@@ -1,0 +1,10 @@
+__pycache__/
+.vscode/
+.trial/
+.sample/
+.standard/
+.data/
+build/
+dist/
+*.spec
+.releases/
