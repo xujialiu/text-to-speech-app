@@ -1,0 +1,2 @@
+SPEECH_KEY = "27345b1f559d4ed892047a00c88e3de1"
+SPEECH_REGION = "koreacentral"
