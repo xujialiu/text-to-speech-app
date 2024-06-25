@@ -16,25 +16,21 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QMenuBar, QSizePolicy,
-    QSpacerItem, QStatusBar, QVBoxLayout, QWidget)
+    QLineEdit, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 600)
-        self.centralwidget = QWidget(MainWindow)
-        self.centralwidget.setObjectName(u"centralwidget")
-        self.widget = QWidget(self.centralwidget)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(200, 300, 264, 112))
-        self.verticalLayout = QVBoxLayout(self.widget)
+class Ui_Form(object):
+    def setupUi(self, Form):
+        if not Form.objectName():
+            Form.setObjectName(u"Form")
+        Form.resize(400, 300)
+        self.verticalLayout_2 = QVBoxLayout(Form)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.label = QLabel(self.widget)
+        self.label = QLabel(Form)
         self.label.setObjectName(u"label")
 
         self.horizontalLayout.addWidget(self.label)
@@ -43,7 +39,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.lineEdit = QLineEdit(self.widget)
+        self.lineEdit = QLineEdit(Form)
         self.lineEdit.setObjectName(u"lineEdit")
 
         self.horizontalLayout.addWidget(self.lineEdit)
@@ -53,7 +49,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.label_2 = QLabel(self.widget)
+        self.label_2 = QLabel(Form)
         self.label_2.setObjectName(u"label_2")
 
         self.horizontalLayout_2.addWidget(self.label_2)
@@ -62,7 +58,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
 
-        self.lineEdit_2 = QLineEdit(self.widget)
+        self.lineEdit_2 = QLineEdit(Form)
         self.lineEdit_2.setObjectName(u"lineEdit_2")
 
         self.horizontalLayout_2.addWidget(self.lineEdit_2)
@@ -72,7 +68,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.label_3 = QLabel(self.widget)
+        self.label_3 = QLabel(Form)
         self.label_3.setObjectName(u"label_3")
 
         self.horizontalLayout_3.addWidget(self.label_3)
@@ -81,7 +77,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
 
-        self.comboBox = QComboBox(self.widget)
+        self.comboBox = QComboBox(Form)
         self.comboBox.setObjectName(u"comboBox")
 
         self.horizontalLayout_3.addWidget(self.comboBox)
@@ -91,7 +87,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_4 = QLabel(self.widget)
+        self.label_4 = QLabel(Form)
         self.label_4.setObjectName(u"label_4")
 
         self.horizontalLayout_4.addWidget(self.label_4)
@@ -100,7 +96,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_4)
 
-        self.comboBox_2 = QComboBox(self.widget)
+        self.comboBox_2 = QComboBox(Form)
         self.comboBox_2.setObjectName(u"comboBox_2")
 
         self.horizontalLayout_4.addWidget(self.comboBox_2)
@@ -108,25 +104,20 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_4)
 
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 22))
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+
+        self.retranslateUi(Form)
+
+        QMetaObject.connectSlotsByName(Form)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Speech key", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Speech region", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Language type", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Voice type", None))
+    def retranslateUi(self, Form):
+        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+        self.label.setText(QCoreApplication.translate("Form", u"Speech key", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"Speech region", None))
+        self.label_3.setText(QCoreApplication.translate("Form", u"Language type", None))
+        self.label_4.setText(QCoreApplication.translate("Form", u"Voice type", None))
     # retranslateUi
 
