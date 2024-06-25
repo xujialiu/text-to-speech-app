@@ -39,10 +39,10 @@ class Ui_Form(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.lineEdit = QLineEdit(Form)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit_speech_key = QLineEdit(Form)
+        self.lineEdit_speech_key.setObjectName(u"lineEdit_speech_key")
 
-        self.horizontalLayout.addWidget(self.lineEdit)
+        self.horizontalLayout.addWidget(self.lineEdit_speech_key)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -58,10 +58,10 @@ class Ui_Form(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
 
-        self.lineEdit_2 = QLineEdit(Form)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_speech_region = QLineEdit(Form)
+        self.lineEdit_speech_region.setObjectName(u"lineEdit_speech_region")
 
-        self.horizontalLayout_2.addWidget(self.lineEdit_2)
+        self.horizontalLayout_2.addWidget(self.lineEdit_speech_region)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -77,10 +77,10 @@ class Ui_Form(object):
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
 
-        self.comboBox = QComboBox(Form)
-        self.comboBox.setObjectName(u"comboBox")
+        self.comboBox_language_type = QComboBox(Form)
+        self.comboBox_language_type.setObjectName(u"comboBox_language_type")
 
-        self.horizontalLayout_3.addWidget(self.comboBox)
+        self.horizontalLayout_3.addWidget(self.comboBox_language_type)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
