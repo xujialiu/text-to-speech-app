@@ -23,7 +23,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(416, 320)
+        Form.resize(429, 328)
         self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
@@ -77,6 +77,7 @@ class Ui_Form(object):
 
         self.comboBox_language_type = QComboBox(Form)
         self.comboBox_language_type.setObjectName(u"comboBox_language_type")
+        self.comboBox_language_type.setMinimumSize(QSize(300, 0))
 
         self.horizontalLayout_3.addWidget(self.comboBox_language_type)
 
@@ -94,10 +95,11 @@ class Ui_Form(object):
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_4)
 
-        self.comboBox_2 = QComboBox(Form)
-        self.comboBox_2.setObjectName(u"comboBox_2")
+        self.comboBox_voice_type = QComboBox(Form)
+        self.comboBox_voice_type.setObjectName(u"comboBox_voice_type")
+        self.comboBox_voice_type.setMinimumSize(QSize(300, 0))
 
-        self.horizontalLayout_4.addWidget(self.comboBox_2)
+        self.horizontalLayout_4.addWidget(self.comboBox_voice_type)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_4)
@@ -123,6 +125,10 @@ class Ui_Form(object):
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_5)
+
+        self.verticalSpacer = QSpacerItem(20, 162, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
 
 
         self.retranslateUi(Form)

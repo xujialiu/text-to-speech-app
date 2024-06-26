@@ -1,0 +1,1010 @@
+{"voice":[{
+    "region": "af-ZA",
+    "voices": ["AdriNeural (female)", "WillemNeural (male)"],
+    "name": "Afrikaans (South Africa)"
+  },
+  {
+    "region": "am-ET",
+    "voices": ["MekdesNeural (female)", "AmehaNeural (male)"],
+    "name": "Amharic (Ethiopia)"
+  },
+  {
+    "region": "ar-AE",
+    "voices": ["FatimaNeural (female)", "HamdanNeural (male)"],
+    "name": "Arabic (United Arab Emirates)"
+  },
+  {
+    "region": "ar-BH",
+    "voices": ["LailaNeural (female)", "AliNeural (male)"],
+    "name": "Arabic (Bahrain)"
+  },
+  {
+    "region": "ar-DZ",
+    "voices": ["AminaNeural (female)", "IsmaelNeural (male)"],
+    "name": "Arabic (Algeria)"
+  },
+  {
+    "region": "ar-EG",
+    "voices": ["SalmaNeural (female)", "ShakirNeural (male)"],
+    "name": "Arabic (Egypt)"
+  },
+  {
+    "region": "ar-IQ",
+    "voices": ["RanaNeural (female)", "BasselNeural (male)"],
+    "name": "Arabic (Iraq)"
+  },
+  {
+    "region": "ar-JO",
+    "voices": ["SanaNeural (female)", "TaimNeural (male)"],
+    "name": "Arabic (Jordan)"
+  },
+  {
+    "region": "ar-KW",
+    "voices": ["NouraNeural (female)", "FahedNeural (male)"],
+    "name": "Arabic (Kuwait)"
+  },
+  {
+    "region": "ar-LB",
+    "voices": ["LaylaNeural (female)", "RamiNeural (male)"],
+    "name": "Arabic (Lebanon)"
+  },
+  {
+    "region": "ar-LY",
+    "voices": ["ImanNeural (female)", "OmarNeural (male)"],
+    "name": "Arabic (Libya)"
+  },
+  {
+    "region": "ar-MA",
+    "voices": ["MounaNeural (female)", "JamalNeural (male)"],
+    "name": "Arabic (Morocco)"
+  },
+  {
+    "region": "ar-OM",
+    "voices": ["AyshaNeural (female)", "AbdullahNeural (male)"],
+    "name": "Arabic (Oman)"
+  },
+  {
+    "region": "ar-QA",
+    "voices": ["AmalNeural (female)", "MoazNeural (male)"],
+    "name": "Arabic (Qatar)"
+  },
+  {
+    "region": "ar-SA",
+    "voices": ["ZariyahNeural (female)", "HamedNeural (male)"],
+    "name": "Arabic (Saudi Arabia)"
+  },
+  {
+    "region": "ar-SY",
+    "voices": ["AmanyNeural (female)", "LaithNeural (male)"],
+    "name": "Arabic (Syria)"
+  },
+  {
+    "region": "ar-TN",
+    "voices": ["ReemNeural (female)", "HediNeural (male)"],
+    "name": "Arabic (Tunisia)"
+  },
+  {
+    "region": "ar-YE",
+    "voices": ["MaryamNeural (female)", "SalehNeural (male)"],
+    "name": "Arabic (Yemen)"
+  },
+  {
+    "region": "az-AZ",
+    "voices": ["BanuNeural (female)", "BabekNeural (male)"],
+    "name": "Azerbaijani (Latin, Azerbaijan)"
+  },
+  {
+    "region": "bg-BG",
+    "voices": ["KalinaNeural (female)", "BorislavNeural (male)"],
+    "name": "Bulgarian (Bulgaria)"
+  },
+  {
+    "region": "bn-BD",
+    "voices": ["NabanitaNeural (female)", "PradeepNeural (male)"],
+    "name": "Bangla (Bangladesh)"
+  },
+  {
+    "region": "bn-IN",
+    "voices": ["TanishaaNeural (female)", "BashkarNeural (male)"],
+    "name": "Bengali (India)"
+  },
+  {
+    "region": "bs-BA",
+    "voices": ["VesnaNeural (female)", "GoranNeural (male)"],
+    "name": "Bosnian (Bosnia and Herzegovina)"
+  },
+  {
+    "region": "ca-ES",
+    "voices": ["JoanaNeural (female)", "EnricNeural (male)", "AlbaNeural (female)"],
+    "name": "Catalan"
+  },
+  {
+    "region": "cs-CZ",
+    "voices": ["VlastaNeural (female)", "AntoninNeural (male)"],
+    "name": "Czech (Czechia)"
+  },
+  {
+    "region": "cy-GB",
+    "voices": ["NiaNeural (female)", "AledNeural (male)"],
+    "name": "Welsh (United Kingdom)"
+  },
+  {
+    "region": "da-DK",
+    "voices": ["ChristelNeural (female)", "JeppeNeural (male)"],
+    "name": "Danish (Denmark)"
+  },
+  {
+    "region": "de-AT",
+    "voices": ["IngridNeural (female)", "JonasNeural (male)"],
+    "name": "German (Austria)"
+  },
+  {
+    "region": "de-CH",
+    "voices": ["LeniNeural (female)", "JanNeural (male)"],
+    "name": "German (Switzerland)"
+  },
+  {
+    "region": "de-DE",
+    "voices": [
+      "KatjaNeural (female)",
+      "ConradNeural (male)",
+      "AmalaNeural (female)",
+      "BerndNeural (male)",
+      "ChristophNeural (male)",
+      "ElkeNeural (female)",
+      "GiselaNeural (female, children)",
+      "KasperNeural (male)",
+      "KillianNeural (male)",
+      "KlarissaNeural (female)",
+      "KlausNeural (male)",
+      "LouisaNeural (female)",
+      "MajaNeural (female)",
+      "RalfNeural (male)",
+      "TanjaNeural (female)",
+      "FlorianMultilingualNeural (male)",
+      "SeraphinaMultilingualNeural (female)"
+    ],
+    "name": "German (Germany)"
+  },
+  {
+    "region": "el-GR",
+    "voices": ["AthinaNeural (female)", "NestorasNeural (male)"],
+    "name": "Greek (Greece)"
+  },
+  {
+    "region": "en-AU",
+    "voices": [
+      "NatashaNeural (female)",
+      "WilliamNeural (male)",
+      "AnnetteNeural (female)",
+      "CarlyNeural (female)",
+      "DarrenNeural (male)",
+      "DuncanNeural (male)",
+      "ElsieNeural (female)",
+      "FreyaNeural (female)",
+      "JoanneNeural (female)",
+      "KenNeural (male)",
+      "KimNeural (female)",
+      "NeilNeural (male)",
+      "TimNeural (male)",
+      "TinaNeural (female)"
+    ],
+    "name": "English (Australia)"
+  },
+  {
+    "region": "en-CA",
+    "voices": ["ClaraNeural (female)", "LiamNeural (male)"],
+    "name": "English (Canada)"
+  },
+  {
+    "region": "en-GB",
+    "voices": [
+      "SoniaNeural (female)",
+      "RyanNeural (male)",
+      "LibbyNeural (female)",
+      "AbbiNeural (female)",
+      "AlfieNeural (male)",
+      "BellaNeural (female)",
+      "ElliotNeural (male)",
+      "EthanNeural (male)",
+      "HollieNeural (female)",
+      "MaisieNeural (female, children)",
+      "NoahNeural (male)",
+      "OliverNeural (male)",
+      "OliviaNeural (female)",
+      "ThomasNeural (male)"
+    ],
+    "name": "English (United Kingdom)"
+  },
+  {
+    "region": "en-HK",
+    "voices": ["YanNeural (female)", "SamNeural (male)"],
+    "name": "English (Hong Kong SAR)"
+  },
+  {
+    "region": "en-IE",
+    "voices": ["EmilyNeural (female)", "ConnorNeural (male)"],
+    "name": "English (Ireland)"
+  },
+  {
+    "region": "en-IN",
+    "voices": ["NeerjaNeural (female)", "PrabhatNeural (male)"],
+    "name": "English (India)"
+  },
+  {
+    "region": "en-KE",
+    "voices": ["AsiliaNeural (female)", "ChilembaNeural (male)"],
+    "name": "English (Kenya)"
+  },
+  {
+    "region": "en-NG",
+    "voices": ["EzinneNeural (female)", "AbeoNeural (male)"],
+    "name": "English (Nigeria)"
+  },
+  {
+    "region": "en-NZ",
+    "voices": ["MollyNeural (female)", "MitchellNeural (male)"],
+    "name": "English (New Zealand)"
+  },
+  {
+    "region": "en-PH",
+    "voices": ["RosaNeural (female)", "JamesNeural (male)"],
+    "name": "English (Philippines)"
+  },
+  {
+    "region": "en-SG",
+    "voices": ["LunaNeural (female)", "WayneNeural (male)"],
+    "name": "English (Singapore)"
+  },
+  {
+    "region": "en-TZ",
+    "voices": ["ImaniNeural (female)", "ElimuNeural (male)"],
+    "name": "English (Tanzania)"
+  },
+  {
+    "region": "en-US",
+    "voices": [
+      "AvaNeural (female)",
+      "AndrewNeural (male)",
+      "EmmaNeural (female)",
+      "BrianNeural (male)",
+      "JennyNeural (female)",
+      "GuyNeural (male)",
+      "AriaNeural (female)",
+      "DavisNeural (male)",
+      "JaneNeural (female)",
+      "JasonNeural (male)",
+      "SaraNeural (female)",
+      "TonyNeural (male)",
+      "NancyNeural (female)",
+      "AmberNeural (female)",
+      "AnaNeural (female, children)",
+      "AshleyNeural (female)",
+      "BrandonNeural (male)",
+      "ChristopherNeural (male)",
+      "CoraNeural (female)",
+      "ElizabethNeural (female)",
+      "EricNeural (male)",
+      "JacobNeural (male)",
+      "JennyMultilingualNeural (female)",
+      "MichelleNeural (female)",
+      "MonicaNeural (female)",
+      "RogerNeural (male)",
+      "RyanMultilingualNeural (male)",
+      "SteffanNeural (male)",
+      "AIGenerateNeural (male)",
+      "AIGenerateNeural (female)",
+      "AndrewMultilingualNeural (male)",
+      "AvaMultilingualNeural (female)",
+      "BlueNeural (\u4E2D\u6027)",
+      "BrianMultilingualNeural (male)",
+      "EmmaMultilingualNeural (female)",
+      "AlloyMultilingualNeural (male)",
+      "EchoMultilingualNeural (male)",
+      "FableMultilingualNeural (\u4E2D\u6027)",
+      "OnyxMultilingualNeural (male)",
+      "NovaMultilingualNeural (female)",
+      "ShimmerMultilingualNeural (female)",
+      "AlloyMultilingualNeuralHD (male)",
+      "EchoMultilingualNeuralHD (male)",
+      "FableMultilingualNeuralHD (\u4E2D\u6027)",
+      "OnyxMultilingualNeuralHD (male)",
+      "NovaMultilingualNeuralHD (female)",
+      "ShimmerMultilingualNeuralHD (female)"
+    ],
+    "name": "English (United States)"
+  },
+  {
+    "region": "en-ZA",
+    "voices": ["LeahNeural (female)", "LukeNeural (male)"],
+    "name": "English (South Africa)"
+  },
+  {
+    "region": "es-AR",
+    "voices": ["ElenaNeural (female)", "TomasNeural (male)"],
+    "name": "Spanish (Argentina)"
+  },
+  {
+    "region": "es-BO",
+    "voices": ["SofiaNeural (female)", "MarceloNeural (male)"],
+    "name": "Spanish (Bolivia)"
+  },
+  {
+    "region": "es-CL",
+    "voices": ["CatalinaNeural (female)", "LorenzoNeural (male)"],
+    "name": "Spanish (Chile)"
+  },
+  {
+    "region": "es-CO",
+    "voices": ["SalomeNeural (female)", "GonzaloNeural (male)"],
+    "name": "Spanish (Colombia)"
+  },
+  {
+    "region": "es-CR",
+    "voices": ["MariaNeural (female)", "JuanNeural (male)"],
+    "name": "Spanish (Costa Rica)"
+  },
+  {
+    "region": "es-CU",
+    "voices": ["BelkysNeural (female)", "ManuelNeural (male)"],
+    "name": "Spanish (Cuba)"
+  },
+  {
+    "region": "es-DO",
+    "voices": ["RamonaNeural (female)", "EmilioNeural (male)"],
+    "name": "Spanish (Dominican Republic)"
+  },
+  {
+    "region": "es-EC",
+    "voices": ["AndreaNeural (female)", "LuisNeural (male)"],
+    "name": "Spanish (Ecuador)"
+  },
+  {
+    "region": "es-ES",
+    "voices": [
+      "ElviraNeural (female)",
+      "AlvaroNeural (male)",
+      "AbrilNeural (female)",
+      "ArnauNeural (male)",
+      "DarioNeural (male)",
+      "EliasNeural (male)",
+      "EstrellaNeural (female)",
+      "IreneNeural (female)",
+      "LaiaNeural (female)",
+      "LiaNeural (female)",
+      "NilNeural (male)",
+      "SaulNeural (male)",
+      "TeoNeural (male)",
+      "TrianaNeural (female)",
+      "VeraNeural (female)",
+      "XimenaNeural (female)"
+    ],
+    "name": "Spanish (Spain)"
+  },
+  {
+    "region": "es-GQ",
+    "voices": ["TeresaNeural (female)", "JavierNeural (male)"],
+    "name": "Spanish (Equatorial Guinea)"
+  },
+  {
+    "region": "es-GT",
+    "voices": ["MartaNeural (female)", "AndresNeural (male)"],
+    "name": "Spanish (Guatemala)"
+  },
+  {
+    "region": "es-HN",
+    "voices": ["KarlaNeural (female)", "CarlosNeural (male)"],
+    "name": "Spanish (Honduras)"
+  },
+  {
+    "region": "es-MX",
+    "voices": [
+      "DaliaNeural (female)",
+      "JorgeNeural (male)",
+      "BeatrizNeural (female)",
+      "CandelaNeural (female)",
+      "CarlotaNeural (female)",
+      "CecilioNeural (male)",
+      "GerardoNeural (male)",
+      "LarissaNeural (female)",
+      "LibertoNeural (male)",
+      "LucianoNeural (male)",
+      "MarinaNeural (female)",
+      "NuriaNeural (female)",
+      "PelayoNeural (male)",
+      "RenataNeural (female)",
+      "YagoNeural (male)"
+    ],
+    "name": "Spanish (Mexico)"
+  },
+  {
+    "region": "es-NI",
+    "voices": ["YolandaNeural (female)", "FedericoNeural (male)"],
+    "name": "Spanish (Nicaragua)"
+  },
+  {
+    "region": "es-PA",
+    "voices": ["MargaritaNeural (female)", "RobertoNeural (male)"],
+    "name": "Spanish (Panama)"
+  },
+  {
+    "region": "es-PE",
+    "voices": ["CamilaNeural (female)", "AlexNeural (male)"],
+    "name": "Spanish (Peru)"
+  },
+  {
+    "region": "es-PR",
+    "voices": ["KarinaNeural (female)", "VictorNeural (male)"],
+    "name": "Spanish (Puerto Rico)"
+  },
+  {
+    "region": "es-PY",
+    "voices": ["TaniaNeural (female)", "MarioNeural (male)"],
+    "name": "Spanish (Paraguay)"
+  },
+  {
+    "region": "es-SV",
+    "voices": ["LorenaNeural (female)", "RodrigoNeural (male)"],
+    "name": "Spanish (El Salvador)"
+  },
+  {
+    "region": "es-US",
+    "voices": ["PalomaNeural (female)", "AlonsoNeural (male)"],
+    "name": "Spanish (United States)"
+  },
+  {
+    "region": "es-UY",
+    "voices": ["ValentinaNeural (female)", "MateoNeural (male)"],
+    "name": "Spanish (Uruguay)"
+  },
+  {
+    "region": "es-VE",
+    "voices": ["PaolaNeural (female)", "SebastianNeural (male)"],
+    "name": "Spanish (Venezuela)"
+  },
+  {
+    "region": "et-EE",
+    "voices": ["AnuNeural (female)", "KertNeural (male)"],
+    "name": "Estonian (Estonia)"
+  },
+  {
+    "region": "eu-ES",
+    "voices": ["AinhoaNeural (female)", "AnderNeural (male)"],
+    "name": "Basque"
+  },
+  {
+    "region": "fa-IR",
+    "voices": ["DilaraNeural (female)", "FaridNeural (male)"],
+    "name": "Persian (Iran)"
+  },
+  {
+    "region": "fi-FI",
+    "voices": ["SelmaNeural (female)", "HarriNeural (male)", "NooraNeural (female)"],
+    "name": "Finnish (Finland)"
+  },
+  {
+    "region": "fil-PH",
+    "voices": ["BlessicaNeural (female)", "AngeloNeural (male)"],
+    "name": "Filipino (Philippines)"
+  },
+  {
+    "region": "fr-BE",
+    "voices": ["CharlineNeural (female)", "GerardNeural (male)"],
+    "name": "French (Belgium)"
+  },
+  {
+    "region": "fr-CA",
+    "voices": [
+      "SylvieNeural (female)",
+      "JeanNeural (male)",
+      "AntoineNeural (male)",
+      "ThierryNeural (male)"
+    ],
+    "name": "French (Canada)"
+  },
+  {
+    "region": "fr-CH",
+    "voices": ["ArianeNeural (female)", "FabriceNeural (male)"],
+    "name": "French (Switzerland)"
+  },
+  {
+    "region": "fr-FR",
+    "voices": [
+      "DeniseNeural (female)",
+      "HenriNeural (male)",
+      "AlainNeural (male)",
+      "BrigitteNeural (female)",
+      "CelesteNeural (female)",
+      "ClaudeNeural (male)",
+      "CoralieNeural (female)",
+      "EloiseNeural (female, children)",
+      "JacquelineNeural (female)",
+      "JeromeNeural (male)",
+      "JosephineNeural (female)",
+      "MauriceNeural (male)",
+      "YvesNeural (male)",
+      "YvetteNeural (female)",
+      "RemyMultilingualNeural (male)",
+      "VivienneMultilingualNeural (female)"
+    ],
+    "name": "French (France)"
+  },
+  {
+    "region": "ga-IE",
+    "voices": ["OrlaNeural (female)", "ColmNeural (male)"],
+    "name": "Irish (Ireland)"
+  },
+  {
+    "region": "gl-ES",
+    "voices": ["SabelaNeural (female)", "RoiNeural (male)"],
+    "name": "Galician"
+  },
+  {
+    "region": "gu-IN",
+    "voices": ["DhwaniNeural (female)", "NiranjanNeural (male)"],
+    "name": "Gujarati (India)"
+  },
+  {
+    "region": "he-IL",
+    "voices": ["HilaNeural (female)", "AvriNeural (male)"],
+    "name": "Hebrew (Israel)"
+  },
+  {
+    "region": "hi-IN",
+    "voices": ["SwaraNeural (female)", "MadhurNeural (male)"],
+    "name": "Hindi (India)"
+  },
+  {
+    "region": "hr-HR",
+    "voices": ["GabrijelaNeural (female)", "SreckoNeural (male)"],
+    "name": "Croatian (Croatia)"
+  },
+  {
+    "region": "hu-HU",
+    "voices": ["NoemiNeural (female)", "TamasNeural (male)"],
+    "name": "Hungarian (Hungary)"
+  },
+  {
+    "region": "hy-AM",
+    "voices": ["AnahitNeural (female)", "HaykNeural (male)"],
+    "name": "Armenian (Armenia)"
+  },
+  {
+    "region": "id-ID",
+    "voices": ["GadisNeural (female)", "ArdiNeural (male)"],
+    "name": "Indonesian (Indonesia)"
+  },
+  {
+    "region": "is-IS",
+    "voices": ["GudrunNeural (female)", "GunnarNeural (male)"],
+    "name": "Icelandic (Iceland)"
+  },
+  {
+    "region": "it-IT",
+    "voices": [
+      "ElsaNeural (female)",
+      "IsabellaNeural (female)",
+      "DiegoNeural (male)",
+      "BenignoNeural (male)",
+      "CalimeroNeural (male)",
+      "CataldoNeural (male)",
+      "FabiolaNeural (female)",
+      "FiammaNeural (female)",
+      "GianniNeural (male)",
+      "ImeldaNeural (female)",
+      "IrmaNeural (female)",
+      "LisandroNeural (male)",
+      "PalmiraNeural (female)",
+      "PierinaNeural (female)",
+      "RinaldoNeural (male)",
+      "GiuseppeNeural (male)"
+    ],
+    "name": "Italian (Italy)"
+  },
+  {
+    "region": "ja-JP",
+    "voices": [
+      "NanamiNeural (female)",
+      "KeitaNeural (male)",
+      "AoiNeural (female)",
+      "DaichiNeural (male)",
+      "MayuNeural (female)",
+      "NaokiNeural (male)",
+      "ShioriNeural (female)",
+      "MasaruMultilingualNeural (male)"
+    ],
+    "name": "Japanese (Japan)"
+  },
+  {
+    "region": "jv-ID",
+    "voices": ["SitiNeural (female)", "DimasNeural (male)"],
+    "name": "Javanese (Latin, Indonesia)"
+  },
+  {
+    "region": "ka-GE",
+    "voices": ["EkaNeural (female)", "GiorgiNeural (male)"],
+    "name": "Georgian (Georgia)"
+  },
+  {
+    "region": "kk-KZ",
+    "voices": ["AigulNeural (female)", "DauletNeural (male)"],
+    "name": "Kazakh (Kazakhstan)"
+  },
+  {
+    "region": "km-KH",
+    "voices": ["SreymomNeural (female)", "PisethNeural (male)"],
+    "name": "Khmer (Cambodia)"
+  },
+  {
+    "region": "kn-IN",
+    "voices": ["SapnaNeural (female)", "GaganNeural (male)"],
+    "name": "Kannada (India)"
+  },
+  {
+    "region": "ko-KR",
+    "voices": [
+      "SunHiNeural (female)",
+      "InJoonNeural (male)",
+      "BongJinNeural (male)",
+      "GookMinNeural (male)",
+      "JiMinNeural (female)",
+      "SeoHyeonNeural (female)",
+      "SoonBokNeural (female)",
+      "YuJinNeural (female)",
+      "HyunsuNeural (male)"
+    ],
+    "name": "Korean (Korea)"
+  },
+  {
+    "region": "lo-LA",
+    "voices": ["KeomanyNeural (female)", "ChanthavongNeural (male)"],
+    "name": "Lao (Laos)"
+  },
+  {
+    "region": "lt-LT",
+    "voices": ["OnaNeural (female)", "LeonasNeural (male)"],
+    "name": "Lithuanian (Lithuania)"
+  },
+  {
+    "region": "lv-LV",
+    "voices": ["EveritaNeural (female)", "NilsNeural (male)"],
+    "name": "Latvian (Latvia)"
+  },
+  {
+    "region": "mk-MK",
+    "voices": ["MarijaNeural (female)", "AleksandarNeural (male)"],
+    "name": "Macedonian (North Macedonia)"
+  },
+  {
+    "region": "ml-IN",
+    "voices": ["SobhanaNeural (female)", "MidhunNeural (male)"],
+    "name": "Malayalam (India)"
+  },
+  {
+    "region": "mn-MN",
+    "voices": ["YesuiNeural (female)", "BataaNeural (male)"],
+    "name": "Mongolian (Mongolia)"
+  },
+  {
+    "region": "mr-IN",
+    "voices": ["AarohiNeural (female)", "ManoharNeural (male)"],
+    "name": "Marathi (India)"
+  },
+  {
+    "region": "ms-MY",
+    "voices": ["YasminNeural (female)", "OsmanNeural (male)"],
+    "name": "Malay (Malaysia)"
+  },
+  {
+    "region": "mt-MT",
+    "voices": ["GraceNeural (female)", "JosephNeural (male)"],
+    "name": "Maltese (Malta)"
+  },
+  {
+    "region": "my-MM",
+    "voices": ["NilarNeural (female)", "ThihaNeural (male)"],
+    "name": "Burmese (Myanmar)"
+  },
+  {
+    "region": "nb-NO",
+    "voices": ["PernilleNeural (female)", "FinnNeural (male)", "IselinNeural (female)"],
+    "name": "Norwegian Bokmal (Norway)"
+  },
+  {
+    "region": "ne-NP",
+    "voices": ["HemkalaNeural (female)", "SagarNeural (male)"],
+    "name": "Nepali (Nepal)"
+  },
+  {
+    "region": "nl-BE",
+    "voices": ["DenaNeural (female)", "ArnaudNeural (male)"],
+    "name": "Dutch (Belgium)"
+  },
+  {
+    "region": "nl-NL",
+    "voices": [
+      "FennaNeural (female)",
+      "MaartenNeural (male)",
+      "ColetteNeural (female)"
+    ],
+    "name": "Dutch (Netherlands)"
+  },
+  {
+    "region": "pl-PL",
+    "voices": [
+      "AgnieszkaNeural (female)",
+      "MarekNeural (male)",
+      "ZofiaNeural (female)"
+    ],
+    "name": "Polish (Poland)"
+  },
+  {
+    "region": "ps-AF",
+    "voices": ["LatifaNeural (female)", "GulNawazNeural (male)"],
+    "name": "Pashto (Afghanistan)"
+  },
+  {
+    "region": "pt-BR",
+    "voices": [
+      "FranciscaNeural (female)",
+      "AntonioNeural (male)",
+      "BrendaNeural (female)",
+      "DonatoNeural (male)",
+      "ElzaNeural (female)",
+      "FabioNeural (male)",
+      "GiovannaNeural (female)",
+      "HumbertoNeural (male)",
+      "JulioNeural (male)",
+      "LeilaNeural (female)",
+      "LeticiaNeural (female)",
+      "ManuelaNeural (female)",
+      "NicolauNeural (male)",
+      "ValerioNeural (male)",
+      "YaraNeural (female)",
+      "ThalitaNeural (female)"
+    ],
+    "name": "Portuguese (Brazil)"
+  },
+  {
+    "region": "pt-PT",
+    "voices": [
+      "RaquelNeural (female)",
+      "DuarteNeural (male)",
+      "FernandaNeural (female)"
+    ],
+    "name": "Portuguese (Portugal)"
+  },
+  {
+    "region": "ro-RO",
+    "voices": ["AlinaNeural (female)", "EmilNeural (male)"],
+    "name": "Romanian (Romania)"
+  },
+  {
+    "region": "ru-RU",
+    "voices": [
+      "SvetlanaNeural (female)",
+      "DmitryNeural (male)",
+      "DariyaNeural (female)"
+    ],
+    "name": "Russian (Russia)"
+  },
+  {
+    "region": "si-LK",
+    "voices": ["ThiliniNeural (female)", "SameeraNeural (male)"],
+    "name": "Sinhala (Sri Lanka)"
+  },
+  {
+    "region": "sk-SK",
+    "voices": ["ViktoriaNeural (female)", "LukasNeural (male)"],
+    "name": "Slovak (Slovakia)"
+  },
+  {
+    "region": "sl-SI",
+    "voices": ["PetraNeural (female)", "RokNeural (male)"],
+    "name": "Slovenian (Slovenia)"
+  },
+  {
+    "region": "so-SO",
+    "voices": ["UbaxNeural (female)", "MuuseNeural (male)"],
+    "name": "Somali (Somalia)"
+  },
+  {
+    "region": "sq-AL",
+    "voices": ["AnilaNeural (female)", "IlirNeural (male)"],
+    "name": "Albanian (Albania)"
+  },
+  {
+    "region": "sr-LATN-RS",
+    "voices": ["NicholasNeural (male)", "SophieNeural (female)"],
+    "name": "Serbian (Latin, Serbia)"
+  },
+  {
+    "region": "sr-RS",
+    "voices": ["SophieNeural (female)", "NicholasNeural (male)"],
+    "name": "Serbian (Cyrillic, Serbia)"
+  },
+  {
+    "region": "su-ID",
+    "voices": ["TutiNeural (female)", "JajangNeural (male)"],
+    "name": "Sundanese (Indonesia)"
+  },
+  {
+    "region": "sv-SE",
+    "voices": [
+      "SofieNeural (female)",
+      "MattiasNeural (male)",
+      "HilleviNeural (female)"
+    ],
+    "name": "Swedish (Sweden)"
+  },
+  {
+    "region": "sw-KE",
+    "voices": ["ZuriNeural (female)", "RafikiNeural (male)"],
+    "name": "Swahili (Kenya)"
+  },
+  {
+    "region": "sw-TZ",
+    "voices": ["RehemaNeural (female)", "DaudiNeural (male)"],
+    "name": "Swahili (Tanzania)"
+  },
+  {
+    "region": "ta-IN",
+    "voices": ["PallaviNeural (female)", "ValluvarNeural (male)"],
+    "name": "Tamil (India)"
+  },
+  {
+    "region": "ta-LK",
+    "voices": ["SaranyaNeural (female)", "KumarNeural (male)"],
+    "name": "Tamil (Sri Lanka)"
+  },
+  {
+    "region": "ta-MY",
+    "voices": ["KaniNeural (female)", "SuryaNeural (male)"],
+    "name": "Tamil (Malaysia)"
+  },
+  {
+    "region": "ta-SG",
+    "voices": ["VenbaNeural (female)", "AnbuNeural (male)"],
+    "name": "Tamil (Singapore)"
+  },
+  {
+    "region": "te-IN",
+    "voices": ["ShrutiNeural (female)", "MohanNeural (male)"],
+    "name": "Telugu (India)"
+  },
+  {
+    "region": "th-TH",
+    "voices": [
+      "PremwadeeNeural (female)",
+      "NiwatNeural (male)",
+      "AcharaNeural (female)"
+    ],
+    "name": "Thai (Thailand)"
+  },
+  {
+    "region": "tr-TR",
+    "voices": ["EmelNeural (female)", "AhmetNeural (male)"],
+    "name": "Turkish (Turkiye)"
+  },
+  {
+    "region": "uk-UA",
+    "voices": ["PolinaNeural (female)", "OstapNeural (male)"],
+    "name": "Ukrainian (Ukraine)"
+  },
+  {
+    "region": "ur-IN",
+    "voices": ["GulNeural (female)", "SalmanNeural (male)"],
+    "name": "Urdu (India)"
+  },
+  {
+    "region": "ur-PK",
+    "voices": ["UzmaNeural (female)", "AsadNeural (male)"],
+    "name": "Urdu (Pakistan)"
+  },
+  {
+    "region": "uz-UZ",
+    "voices": ["MadinaNeural (female)", "SardorNeural (male)"],
+    "name": "Uzbek (Latin, Uzbekistan)"
+  },
+  {
+    "region": "vi-VN",
+    "voices": ["HoaiMyNeural (female)", "NamMinhNeural (male)"],
+    "name": "Vietnamese (Vietnam)"
+  },
+  {
+    "region": "wuu-CN",
+    "voices": ["XiaotongNeural (female)", "YunzheNeural (male)"],
+    "name": "Chinese (Wu, Simplified)"
+  },
+  {
+    "region": "yue-CN",
+    "voices": ["XiaoMinNeural (female)", "YunSongNeural (male)"],
+    "name": "Chinese (Cantonese, Simplified)"
+  },
+  {
+    "region": "zh-CN",
+    "voices": [
+      "XiaoxiaoNeural (female)",
+      "YunxiNeural (male)",
+      "YunjianNeural (male)",
+      "XiaoyiNeural (female)",
+      "YunyangNeural (male)",
+      "XiaochenNeural (female)",
+      "XiaohanNeural (female)",
+      "XiaomengNeural (female)",
+      "XiaomoNeural (female)",
+      "XiaoqiuNeural (female)",
+      "XiaoruiNeural (female)",
+      "XiaoshuangNeural (female, children)",
+      "XiaoyanNeural (female)",
+      "XiaoyouNeural (female, children)",
+      "XiaozhenNeural (female)",
+      "YunfengNeural (male)",
+      "YunhaoNeural (male)",
+      "YunxiaNeural (male)",
+      "YunyeNeural (male)",
+      "YunzeNeural (male)",
+      "XiaochenMultilingualNeural (female)",
+      "XiaorouNeural (female)",
+      "XiaoxiaoDialectsNeural (female)",
+      "XiaoxiaoMultilingualNeural (female)",
+      "XiaoyuMultilingualNeural (female)",
+      "YunjieNeural (male)",
+      "YunyiMultilingualNeural (male)"
+    ],
+    "name": "Chinese (Mandarin, Simplified)"
+  },
+  {
+    "region": "zh-CN-GUANGXI",
+    "voices": ["YunqiNeural (male)"],
+    "name": "Chinese (Guangxi Accent Mandarin, Simplified)"
+  },
+  {
+    "region": "zh-CN-henan",
+    "voices": ["YundengNeural (male)"],
+    "name": "Chinese (Zhongyuan Mandarin Henan, Simplified)"
+  },
+  {
+    "region": "zh-CN-liaoning",
+    "voices": ["XiaobeiNeural (female)", "YunbiaoNeural (male)"],
+    "name": "Chinese (Northeastern Mandarin, Simplified)"
+  },
+  {
+    "region": "zh-CN-shaanxi",
+    "voices": ["XiaoniNeural (female)"],
+    "name": "Chinese (Zhongyuan Mandarin Shaanxi, Simplified)"
+  },
+  {
+    "region": "zh-CN-shandong",
+    "voices": ["YunxiangNeural (male)"],
+    "name": "Chinese (Jilu Mandarin, Simplified)"
+  },
+  {
+    "region": "zh-CN-sichuan",
+    "voices": ["YunxiNeural (male)"],
+    "name": "Chinese (Southwestern Mandarin, Simplified)"
+  },
+  {
+    "region": "zh-HK",
+    "voices": [
+      "HiuMaanNeural (female)",
+      "WanLungNeural (male)",
+      "HiuGaaiNeural (female)"
+    ],
+    "name": "Chinese (Cantonese, Traditional)"
+  },
+  {
+    "region": "zh-TW",
+    "voices": [
+      "HsiaoChenNeural (female)",
+      "YunJheNeural (male)",
+      "HsiaoYuNeural (female)"
+    ],
+    "name": "Chinese (Taiwanese Mandarin, Traditional)"
+  },
+  {
+    "region": "zu-ZA",
+    "voices": ["ThandoNeural (female)", "ThembaNeural (male)"],
+    "name": "Zulu (South Africa)"
+  }]
+}
