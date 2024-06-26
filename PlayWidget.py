@@ -27,10 +27,10 @@ class Ui_Form(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.textEdit = QTextEdit(Form)
-        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit_text = QTextEdit(Form)
+        self.textEdit_text.setObjectName(u"textEdit_text")
 
-        self.verticalLayout.addWidget(self.textEdit)
+        self.verticalLayout.addWidget(self.textEdit_text)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -38,10 +38,10 @@ class Ui_Form(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
-        self.pushButton = QPushButton(Form)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton_play = QPushButton(Form)
+        self.pushButton_play.setObjectName(u"pushButton_play")
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.pushButton_play)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -70,8 +70,8 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.textEdit.setPlaceholderText(QCoreApplication.translate("Form", u"Please enter the text to be converted...", None))
-        self.pushButton.setText(QCoreApplication.translate("Form", u"Play", None))
+        self.textEdit_text.setPlaceholderText(QCoreApplication.translate("Form", u"Please enter the text to be converted...", None))
+        self.pushButton_play.setText(QCoreApplication.translate("Form", u"Play", None))
         self.pushButton_2.setText(QCoreApplication.translate("Form", u"Save", None))
     # retranslateUi
 

@@ -17,7 +17,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="textEdit_text">
        <property name="placeholderText">
         <string>Please enter the text to be converted...</string>
        </property>
@@ -39,7 +39,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pushButton_play">
          <property name="text">
           <string>Play</string>
          </property>

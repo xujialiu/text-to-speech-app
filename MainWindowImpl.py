@@ -19,7 +19,7 @@ from PySide6.QtCore import (
     QUrl,
     Qt,
 )
-
+import azure.cognitiveservices.speech as speechsdk
 import MainWindow
 import PlayWidget
 import SetWidget
@@ -30,6 +30,7 @@ class MainWindowImpl(QMainWindow):
         super().__init__()
         self.init_ui()
         self.read_settings()
+        self.init_speech_config()
 
     def init_ui(self):
         self._init_mainwindow()
@@ -43,6 +44,11 @@ class MainWindowImpl(QMainWindow):
     def _init_playwidget(self):
         self.playwidget = PlayWidget.Ui_Form()
         self.playwidget.setupUi(self.mainwindow.tab_play)
+
+        self._init_play_button()
+
+    def _init_play_button(self):
+        self.playwidget.pushButton_play.clicked.connect(self.on_play_clicked)
 
     def _init_setwidget(self):
         self.setwidget = SetWidget.Ui_Form()
@@ -64,6 +70,10 @@ class MainWindowImpl(QMainWindow):
         self.speech_region = settings.value("speech_region", "")
         self.setwidget.lineEdit_speech_region.setText(self.speech_region)
 
+        # read voice_speed setting
+        voice_speed = settings.value("voice_speed", "1")
+        self.setwidget.doubleSpinBox_voice_speed.setValue(float(voice_speed))
+
     def write_settings(self):
 
         settings = QSettings("xujialiu", "text-to-speech")
@@ -74,9 +84,36 @@ class MainWindowImpl(QMainWindow):
         # save speech_region setting
         settings.setValue("speech_region", self.setwidget.lineEdit_speech_region.text())
 
+        # save voice_speed setting
+        settings.setValue(
+            "voice_speed", self.setwidget.doubleSpinBox_voice_speed.text()
+        )
+
+    def init_speech_config(self):
+        self.speech_config = speechsdk.SpeechConfig(
+            subscription=self.speech_key, region=self.speech_region
+        )
+        self.synthesizer = speechsdk.SpeechSynthesizer(speech_config=self.speech_config)
+
+    def on_play_clicked(self):
+        self.text = self.playwidget.textEdit_text.toPlainText()
+        self.speed = self.setwidget.doubleSpinBox_voice_speed.text()
+        self.ssml = (
+            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">'
+            f'<voice name="en-US-AvaNeural">'
+            f'<prosody rate="{self.speed}">'
+            f"{self.text}"
+            "</prosody>"
+            "</voice>\n"
+            "</speak>\n"
+        )
+
+        self.synthesizer.speak_ssml_async(self.ssml).get()
+
 
 if __name__ == "__main__":
     import sys
+
     app = QApplication(sys.argv)
     window = MainWindowImpl()
     window.show()

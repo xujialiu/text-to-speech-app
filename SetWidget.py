@@ -15,18 +15,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QLineEdit, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDoubleSpinBox, QHBoxLayout,
+    QLabel, QLineEdit, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(400, 300)
-        self.verticalLayout_2 = QVBoxLayout(Form)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout = QVBoxLayout()
+        Form.resize(416, 320)
+        self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -104,8 +102,27 @@ class Ui_Form(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_4)
 
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label_5 = QLabel(Form)
+        self.label_5.setObjectName(u"label_5")
 
-        self.verticalLayout_2.addLayout(self.verticalLayout)
+        self.horizontalLayout_5.addWidget(self.label_5)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_5)
+
+        self.doubleSpinBox_voice_speed = QDoubleSpinBox(Form)
+        self.doubleSpinBox_voice_speed.setObjectName(u"doubleSpinBox_voice_speed")
+        self.doubleSpinBox_voice_speed.setDecimals(1)
+        self.doubleSpinBox_voice_speed.setSingleStep(0.100000000000000)
+        self.doubleSpinBox_voice_speed.setValue(1.000000000000000)
+
+        self.horizontalLayout_5.addWidget(self.doubleSpinBox_voice_speed)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_5)
 
 
         self.retranslateUi(Form)
@@ -119,5 +136,6 @@ class Ui_Form(object):
         self.label_2.setText(QCoreApplication.translate("Form", u"Speech region", None))
         self.label_3.setText(QCoreApplication.translate("Form", u"Language type", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"Voice type", None))
+        self.label_5.setText(QCoreApplication.translate("Form", u"Voice speech", None))
     # retranslateUi
 
