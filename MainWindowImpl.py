@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import json
+from PySide6.QtGui import QAction, QIcon
 from PySide6.QtWidgets import (
     QApplication,
     QMainWindow,
+    QMenu,
+    QSystemTrayIcon,
     QWidget,
     QVBoxLayout,
     QPushButton,
@@ -19,6 +22,7 @@ from PySide6.QtCore import (
     QTime,
     QUrl,
     Qt,
+    Slot,
 )
 import azure.cognitiveservices.speech as speechsdk
 import MainWindow
@@ -38,7 +42,36 @@ class MainWindowImpl(QMainWindow):
         self._init_mainwindow()
         self._init_playwidget()
         self._init_setwidget()
+        self._init_tray_menu()
+        self._init_tray_icon()
         self._init_language_type()
+
+    def _init_tray_menu(self):
+        self.tray_menu = QMenu()
+        close_action = QAction("Close", self)
+        close_action.triggered.connect(self.on_close_clicked)
+        self.tray_menu.addAction(close_action)
+
+    def _init_tray_icon(self):
+        self.tray_icon = QSystemTrayIcon(self)
+        self.tray_icon.setIcon(QIcon("icon.png"))  # 设置系统托盘图标
+        self.tray_icon.setToolTip("Azure-Text-To-Speech")
+
+        self.tray_icon.setContextMenu(self.tray_menu)
+        self.tray_icon.activated.connect(self.on_tray_icon_activated)
+        self.tray_icon.show()
+
+    def on_tray_icon_activated(self, reason):
+        if reason == QSystemTrayIcon.Trigger:
+            self.show()
+
+    @Slot()
+    def on_close_clicked(self):
+        """真正的关闭事件"""
+        self.tray_icon.hide()
+        # save settings before closed
+        self.write_settings()
+        QApplication.quit()
 
     def _load_meta_json(self):
         file_path = "meta.json"
@@ -81,9 +114,15 @@ class MainWindowImpl(QMainWindow):
         self.setwidget.setupUi(self.mainwindow.tab_setting)
 
     def closeEvent(self, event):
-        # save settings before closed
-        self.write_settings()
-        event.accept()
+        """点击主窗口右上角的x的事件, 并非真正的关闭事件"""
+        event.ignore()
+        self.hide()
+        self.tray_icon.showMessage(
+            "Azure-Text-To-Speech",
+            "The program has been minimized to the system tray.",
+            QSystemTrayIcon.Information,
+            2000,
+        )
 
     def read_settings(self):
         settings = QSettings("xujialiu", "text-to-speech")
