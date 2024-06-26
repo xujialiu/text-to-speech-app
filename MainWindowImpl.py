@@ -143,9 +143,15 @@ class MainWindowImpl(QMainWindow):
         self.text = self.playwidget.textEdit_text.toPlainText()
         self.speed = self.setwidget.doubleSpinBox_voice_speed.text()
         self.lang = self.setwidget.comboBox_language_type.currentText()
+
+        self.voice_type = self.setwidget.comboBox_voice_type.currentText()
+        self.voice = self.voice_type.split()[0]
+
+        self.lang, _ = self.setwidget.comboBox_language_type.currentData()
+
         self.ssml = (
-            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">'
-            f'<voice name="en-US-AvaNeural">'
+            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.lang}">'
+            f'<voice name="{self.lang}-{self.voice}">'
             f'<prosody rate="{self.speed}">'
             f"{self.text}"
             "</prosody>"
