@@ -73,25 +73,50 @@ class MainWindowImpl(QMainWindow):
             self.set_stop_hotkey
         )
 
-    def set_convert_hotkey(self):
-        str_keysequence_convert = self.convert_keysequence_to_string(
-            self.setwidget.keySequenceEdit_covert
-        )
-        if str_keysequence_convert:
+    def set_hotkey(self, str_keysequence, on_keysequence_triggered):
+        # str_keysequence_convert = self.convert_keysequence_to_string(
+        #     self.setwidget.keySequenceEdit_covert
+        # )
+        if str_keysequence:
             # 如果global_hotkeys_listener不为None, 先停下
             if self.global_hotkeys_listener:
                 self.global_hotkeys_listener.stop()
 
             # 解析为pynput可以理解的hotkey
-            pynput_hotkey = self.parse_hotkey(str_keysequence_convert)
-            self.update_dict_fn_hotkey(
-                pynput_hotkey, self.on_keysequence_convert_triggered
-            )
+            pynput_hotkey = self.parse_hotkey(str_keysequence)
+            self.update_dict_fn_hotkey(pynput_hotkey, on_keysequence_triggered)
             self.update_dict_hotkey_fn()
 
             if self.dict_fn_hotkey:
-                self.global_hotkeys_listener = keyboard.GlobalHotKeys(self.dict_hotkey_fn)
+                self.global_hotkeys_listener = keyboard.GlobalHotKeys(
+                    self.dict_hotkey_fn
+                )
                 self.global_hotkeys_listener.start()
+
+    def set_convert_hotkey(self):
+        str_keysequence_convert = self.convert_keysequence_to_string(
+            self.setwidget.keySequenceEdit_covert
+        )
+        self.set_hotkey(
+            str_keysequence_convert, self.on_keysequence_convert_triggered
+        )
+
+    def set_play_pause_hotkey(self):
+        str_keysequence_play_pause = self.convert_keysequence_to_string(
+            self.setwidget.keySequenceEdit_play_pause
+        )
+        self.set_hotkey(
+            str_keysequence_play_pause, self.on_keysequence_play_pause_triggered
+        )
+
+
+    def set_stop_hotkey(self):
+        str_keysequence_stop = self.convert_keysequence_to_string(
+            self.setwidget.keySequenceEdit_stop
+        )
+        self.set_hotkey(
+            str_keysequence_stop, self.on_keysequence_stop_triggered
+        )
 
     def update_dict_fn_hotkey(self, pynput_hotkey, fn):
         self.dict_fn_hotkey[fn] = pynput_hotkey
@@ -104,12 +129,6 @@ class MainWindowImpl(QMainWindow):
                     self.dict_hotkey_fn[hotkey] = fn
         except:
             pass
-
-    def set_play_pause_hotkey(self):
-        pass
-
-    def set_stop_hotkey(self):
-        pass
 
     @staticmethod
     def convert_keysequence_to_string(keysequenceedit):
@@ -136,10 +155,10 @@ class MainWindowImpl(QMainWindow):
         print(1)
 
     def on_keysequence_play_pause_triggered(self):
-        pass
+        print(2)
 
     def on_keysequence_stop_triggered(self):
-        pass
+        print(3)
 
     def _init_debugwidget(self):
         self.debugwidget = DebugWidget.Ui_Form()
