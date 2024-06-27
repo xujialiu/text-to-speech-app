@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import json
-from PySide6.QtGui import QAction, QIcon
+from tkinter import NO
+from PySide6.QtGui import QAction, QIcon, QKeySequence
 from PySide6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -28,11 +29,23 @@ import azure.cognitiveservices.speech as speechsdk
 import MainWindow
 import PlayWidget
 import SetWidget
+import DebugWidget
+from pynput import keyboard
 
 
 class MainWindowImpl(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.convert = 0
+        self.play_pause = 0
+        self.global_hotkeys_listener = None
+        self.dict_fn_hotkey = {
+            self.on_keysequence_convert_triggered: None,
+            self.on_keysequence_play_pause_triggered: None,
+            self.on_keysequence_stop_triggered: None,
+        }
+        self.dict_hotkey_fn = dict()
+
         self.init_ui()
         self.read_settings()
         self.init_speech_config()
@@ -45,6 +58,96 @@ class MainWindowImpl(QMainWindow):
         self._init_tray_menu()
         self._init_tray_icon()
         self._init_language_type()
+        self._init_keysequenceedit()
+        self._init_debugwidget()
+
+    def _init_keysequenceedit(self):
+
+        self.setwidget.keySequenceEdit_covert.keySequenceChanged.connect(
+            self.set_convert_hotkey
+        )
+        self.setwidget.keySequenceEdit_play_pause.keySequenceChanged.connect(
+            self.set_play_pause_hotkey
+        )
+        self.setwidget.keySequenceEdit_stop.keySequenceChanged.connect(
+            self.set_stop_hotkey
+        )
+
+    def set_convert_hotkey(self):
+        str_keysequence_convert = self.convert_keysequence_to_string(
+            self.setwidget.keySequenceEdit_covert
+        )
+        if str_keysequence_convert:
+            # 如果global_hotkeys_listener不为None, 先停下
+            if self.global_hotkeys_listener:
+                self.global_hotkeys_listener.stop()
+
+            # 解析为pynput可以理解的hotkey
+            pynput_hotkey = self.parse_hotkey(str_keysequence_convert)
+            self.update_dict_fn_hotkey(
+                pynput_hotkey, self.on_keysequence_convert_triggered
+            )
+            self.update_dict_hotkey_fn()
+
+            if self.dict_fn_hotkey:
+                self.global_hotkeys_listener = keyboard.GlobalHotKeys(self.dict_hotkey_fn)
+                self.global_hotkeys_listener.start()
+
+    def update_dict_fn_hotkey(self, pynput_hotkey, fn):
+        self.dict_fn_hotkey[fn] = pynput_hotkey
+
+    def update_dict_hotkey_fn(self):
+        self.dict_hotkey_fn = dict()
+        try:
+            for fn, hotkey in self.dict_fn_hotkey.items():
+                if hotkey:
+                    self.dict_hotkey_fn[hotkey] = fn
+        except:
+            pass
+
+    def set_play_pause_hotkey(self):
+        pass
+
+    def set_stop_hotkey(self):
+        pass
+
+    @staticmethod
+    def convert_keysequence_to_string(keysequenceedit):
+        return keysequenceedit.keySequence().toString(QKeySequence.NativeText)
+
+    def parse_hotkey(self, key_sequence):
+        key_map = {
+            "Ctrl": "<ctrl>",
+            "Alt": "<alt>",
+            "Shift": "<shift>",
+            "Meta": "<cmd>",
+        }
+        keys = key_sequence.split("+")
+        parsed_keys = []
+        for key in keys:
+            key = key.strip()
+            if key in key_map:
+                parsed_keys.append(key_map[key])
+            else:
+                parsed_keys.append(key.lower())
+        return "+".join(parsed_keys)
+
+    def on_keysequence_convert_triggered(self):
+        print(1)
+
+    def on_keysequence_play_pause_triggered(self):
+        pass
+
+    def on_keysequence_stop_triggered(self):
+        pass
+
+    def _init_debugwidget(self):
+        self.debugwidget = DebugWidget.Ui_Form()
+        self.debugwidget.setupUi(self.mainwindow.tab_debug)
+        self.debugwidget.pushButton_debug.clicked.connect(self.on_debug_clicked)
+
+    def on_debug_clicked(self):
+        print("debug")
 
     def _init_tray_menu(self):
         self.tray_menu = QMenu()
@@ -65,7 +168,6 @@ class MainWindowImpl(QMainWindow):
         if reason == QSystemTrayIcon.Trigger:
             self.show()
 
-    @Slot()
     def on_close_clicked(self):
         """真正的关闭事件"""
         self.tray_icon.hide()
@@ -147,6 +249,21 @@ class MainWindowImpl(QMainWindow):
         voice_type = settings.value("voice_type", "-1")
         self.setwidget.comboBox_voice_type.setCurrentIndex(int(voice_type))
 
+        # save keySequenceEdit
+        self.setwidget.keySequenceEdit_covert.setKeySequence(
+            settings.value(
+                "convert_text_to_speech", QKeySequence.StandardKey.UnknownKey
+            )
+        )
+        self.setwidget.keySequenceEdit_play_pause.setKeySequence(
+            settings.value(
+                "pause_or_resume_speech", QKeySequence.StandardKey.UnknownKey
+            )
+        )
+        self.setwidget.keySequenceEdit_stop.setKeySequence(
+            settings.value("stop_conversion", QKeySequence.StandardKey.UnknownKey)
+        )
+
     def write_settings(self):
 
         settings = QSettings("xujialiu", "text-to-speech")
@@ -170,6 +287,19 @@ class MainWindowImpl(QMainWindow):
         # save voice_type setting
         settings.setValue(
             "voice_type", self.setwidget.comboBox_voice_type.currentIndex()
+        )
+
+        # save keySequenceEdit
+        settings.setValue(
+            "convert_text_to_speech",
+            self.setwidget.keySequenceEdit_covert.keySequence(),
+        )
+        settings.setValue(
+            "pause_or_resume_speech",
+            self.setwidget.keySequenceEdit_play_pause.keySequence(),
+        )
+        settings.setValue(
+            "stop_conversion", self.setwidget.keySequenceEdit_stop.keySequence()
         )
 
     def init_speech_config(self):

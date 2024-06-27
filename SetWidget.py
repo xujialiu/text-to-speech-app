@@ -16,14 +16,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDoubleSpinBox, QHBoxLayout,
-    QLabel, QLineEdit, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
+    QKeySequenceEdit, QLabel, QLineEdit, QSizePolicy,
+    QSpacerItem, QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(429, 328)
+        Form.resize(516, 440)
         self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
@@ -126,6 +126,63 @@ class Ui_Form(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_5)
 
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.label_6 = QLabel(Form)
+        self.label_6.setObjectName(u"label_6")
+
+        self.horizontalLayout_6.addWidget(self.label_6)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_6)
+
+        self.keySequenceEdit_covert = QKeySequenceEdit(Form)
+        self.keySequenceEdit_covert.setObjectName(u"keySequenceEdit_covert")
+
+        self.horizontalLayout_6.addWidget(self.keySequenceEdit_covert)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_6)
+
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_7 = QLabel(Form)
+        self.label_7.setObjectName(u"label_7")
+
+        self.horizontalLayout_7.addWidget(self.label_7)
+
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_7)
+
+        self.keySequenceEdit_play_pause = QKeySequenceEdit(Form)
+        self.keySequenceEdit_play_pause.setObjectName(u"keySequenceEdit_play_pause")
+
+        self.horizontalLayout_7.addWidget(self.keySequenceEdit_play_pause)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_7)
+
+        self.horizontalLayout_8 = QHBoxLayout()
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.label_8 = QLabel(Form)
+        self.label_8.setObjectName(u"label_8")
+
+        self.horizontalLayout_8.addWidget(self.label_8)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_8)
+
+        self.keySequenceEdit_stop = QKeySequenceEdit(Form)
+        self.keySequenceEdit_stop.setObjectName(u"keySequenceEdit_stop")
+
+        self.horizontalLayout_8.addWidget(self.keySequenceEdit_stop)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_8)
+
         self.verticalSpacer = QSpacerItem(20, 162, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
@@ -143,5 +200,8 @@ class Ui_Form(object):
         self.label_3.setText(QCoreApplication.translate("Form", u"Language type", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"Voice type", None))
         self.label_5.setText(QCoreApplication.translate("Form", u"Voice speech", None))
+        self.label_6.setText(QCoreApplication.translate("Form", u"Convert text to speech", None))
+        self.label_7.setText(QCoreApplication.translate("Form", u"Pause or resume the speech", None))
+        self.label_8.setText(QCoreApplication.translate("Form", u"Stop conversion", None))
     # retranslateUi
 
