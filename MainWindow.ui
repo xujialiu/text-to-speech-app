@@ -17,6 +17,9 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
       <widget class="QWidget" name="tab_play">
        <attribute name="title">
         <string>Play</string>
@@ -25,6 +28,11 @@
       <widget class="QWidget" name="tab_setting">
        <attribute name="title">
         <string>Setting</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_debug">
+       <attribute name="title">
+        <string>Debug</string>
        </attribute>
       </widget>
      </widget>

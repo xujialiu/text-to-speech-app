@@ -35,6 +35,9 @@ class Ui_MainWindow(object):
         self.tab_setting = QWidget()
         self.tab_setting.setObjectName(u"tab_setting")
         self.tabWidget.addTab(self.tab_setting, "")
+        self.tab_debug = QWidget()
+        self.tab_debug.setObjectName(u"tab_debug")
+        self.tabWidget.addTab(self.tab_debug, "")
 
         self.verticalLayout.addWidget(self.tabWidget)
 
@@ -49,6 +52,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.tabWidget.setCurrentIndex(2)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -56,5 +62,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_play), QCoreApplication.translate("MainWindow", u"Play", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_setting), QCoreApplication.translate("MainWindow", u"Setting", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_debug), QCoreApplication.translate("MainWindow", u"Debug", None))
     # retranslateUi
 
