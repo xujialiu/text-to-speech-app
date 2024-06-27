@@ -8,5 +8,5 @@ build/
 dist/
 *.spec
 .releases/
-.trial.py
+*trial*
 api_key.text
