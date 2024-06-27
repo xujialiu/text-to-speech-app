@@ -61,7 +61,6 @@ class MainWindowImpl(QMainWindow):
         self._init_tray_menu()
         self._init_tray_icon()
 
-        # self._init_sethotkey()
         self._init_keysequenceedit()
 
         self._init_speech_region()
@@ -153,7 +152,6 @@ class MainWindowImpl(QMainWindow):
         )
         # self.synthesizer.speak_ssml_async(ssml).get()
         print(1)
-
 
     def on_play_pause_hotkey_triggered(self):
         print(2)
@@ -332,20 +330,23 @@ class MainWindowImpl(QMainWindow):
         # read keySequenceEdit for convert_text_to_speech
         convert_key_sequence = settings.value("convert_text_to_speech", "")
         if convert_key_sequence:
-            self.setwidget.keySequenceEdit_covert.setKeySequence(QKeySequence(convert_key_sequence))
-            self.set_convert_hotkey()
+            self.setwidget.keySequenceEdit_covert.setKeySequence(
+                QKeySequence(convert_key_sequence)
+            )
 
         # read keySequenceEdit for pause_or_resume_speech
         play_pause_key_sequence = settings.value("pause_or_resume_speech", "")
         if play_pause_key_sequence:
-            self.setwidget.keySequenceEdit_play_pause.setKeySequence(QKeySequence(play_pause_key_sequence))
-            self.set_play_pause_hotkey()
+            self.setwidget.keySequenceEdit_play_pause.setKeySequence(
+                QKeySequence(play_pause_key_sequence)
+            )
 
         # read keySequenceEdit for stop_conversion
         stop_key_sequence = settings.value("stop_conversion", "")
         if stop_key_sequence:
-            self.setwidget.keySequenceEdit_stop.setKeySequence(QKeySequence(stop_key_sequence))
-            self.set_stop_hotkey()
+            self.setwidget.keySequenceEdit_stop.setKeySequence(
+                QKeySequence(stop_key_sequence)
+            )
 
     def write_settings(self):
 
