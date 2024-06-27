@@ -9,3 +9,4 @@ dist/
 *.spec
 .releases/
 .trial.py
+api_key.text
