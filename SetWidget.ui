@@ -6,14 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>516</width>
-    <height>440</height>
+    <width>854</width>
+    <height>685</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_10">
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>General:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -37,7 +56,20 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_speech_key"/>
+      <widget class="QLineEdit" name="lineEdit_speech_key">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -64,7 +96,20 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_speech_region"/>
+      <widget class="QLineEdit" name="lineEdit_speech_region">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -174,6 +219,25 @@
     </layout>
    </item>
    <item>
+    <widget class="QLabel" name="label_9">
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Global Hotkeys:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
       <widget class="QLabel" name="label_6">
@@ -196,7 +260,20 @@
       </spacer>
      </item>
      <item>
-      <widget class="QKeySequenceEdit" name="keySequenceEdit_covert"/>
+      <widget class="QKeySequenceEdit" name="keySequenceEdit_covert">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -205,7 +282,7 @@
      <item>
       <widget class="QLabel" name="label_7">
        <property name="text">
-        <string>Pause or resume the speech</string>
+        <string>Pause or resume speech</string>
        </property>
       </widget>
      </item>
@@ -223,7 +300,20 @@
       </spacer>
      </item>
      <item>
-      <widget class="QKeySequenceEdit" name="keySequenceEdit_play_pause"/>
+      <widget class="QKeySequenceEdit" name="keySequenceEdit_play_pause">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -250,7 +340,20 @@
       </spacer>
      </item>
      <item>
-      <widget class="QKeySequenceEdit" name="keySequenceEdit_stop"/>
+      <widget class="QKeySequenceEdit" name="keySequenceEdit_stop">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
