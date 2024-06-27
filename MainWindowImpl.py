@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+# TODO:
+# [[bug]]: speak_ssml_async存在线程阻塞问题
 
 import json
-from tkinter import NO
 from PySide6.QtGui import QAction, QIcon, QKeySequence
 from PySide6.QtWidgets import (
     QApplication,
@@ -40,26 +41,56 @@ class MainWindowImpl(QMainWindow):
         self.play_pause = 0
         self.global_hotkeys_listener = None
         self.dict_fn_hotkey = {
-            self.on_keysequence_convert_triggered: None,
-            self.on_keysequence_play_pause_triggered: None,
-            self.on_keysequence_stop_triggered: None,
+            self.on_play_hotkey_triggered: None,
+            self.on_play_pause_hotkey_triggered: None,
+            self.on_stop_hotkey_triggered: None,
         }
         self.dict_hotkey_fn = dict()
 
         self.init_ui()
         self.read_settings()
-        self.init_speech_config()
+        self.init_speech_synthesizer()
 
     def init_ui(self):
         self._init_app()
         self._init_mainwindow()
         self._init_playwidget()
         self._init_setwidget()
+        self._init_debugwidget()
+
         self._init_tray_menu()
         self._init_tray_icon()
-        self._init_language_type()
+
+        # self._init_sethotkey()
         self._init_keysequenceedit()
-        self._init_debugwidget()
+
+        self._init_speech_region()
+        self._init_speech_key()
+        self._init_language_type()
+        self._init_voice_type()
+        self._init_voice_speech()
+        self._init_clipboard()
+
+    def _init_speech_key(self):
+        self.setwidget.lineEdit_speech_key.textChanged.connect(
+            self.on_speech_key_changed
+        )
+
+    def on_speech_key_changed(self, text):
+        self.speech_key = text
+        self.init_speech_synthesizer()
+
+    def _init_speech_region(self):
+        self.setwidget.lineEdit_speech_region.textChanged.connect(
+            self.on_speech_region_changed
+        )
+
+    def on_speech_region_changed(self, text):
+        self.speech_region = text
+        self.init_speech_synthesizer()
+
+    def _init_clipboard(self):
+        self.clipboard = QApplication.clipboard()
 
     def _init_keysequenceedit(self):
 
@@ -74,9 +105,6 @@ class MainWindowImpl(QMainWindow):
         )
 
     def set_hotkey(self, str_keysequence, on_keysequence_triggered):
-        # str_keysequence_convert = self.convert_keysequence_to_string(
-        #     self.setwidget.keySequenceEdit_covert
-        # )
         if str_keysequence:
             # 如果global_hotkeys_listener不为None, 先停下
             if self.global_hotkeys_listener:
@@ -84,6 +112,7 @@ class MainWindowImpl(QMainWindow):
 
             # 解析为pynput可以理解的hotkey
             pynput_hotkey = self.parse_hotkey(str_keysequence)
+
             self.update_dict_fn_hotkey(pynput_hotkey, on_keysequence_triggered)
             self.update_dict_hotkey_fn()
 
@@ -97,26 +126,40 @@ class MainWindowImpl(QMainWindow):
         str_keysequence_convert = self.convert_keysequence_to_string(
             self.setwidget.keySequenceEdit_covert
         )
-        self.set_hotkey(
-            str_keysequence_convert, self.on_keysequence_convert_triggered
-        )
+        self.set_hotkey(str_keysequence_convert, self.on_play_hotkey_triggered)
 
     def set_play_pause_hotkey(self):
         str_keysequence_play_pause = self.convert_keysequence_to_string(
             self.setwidget.keySequenceEdit_play_pause
         )
-        self.set_hotkey(
-            str_keysequence_play_pause, self.on_keysequence_play_pause_triggered
-        )
-
+        self.set_hotkey(str_keysequence_play_pause, self.on_play_pause_hotkey_triggered)
 
     def set_stop_hotkey(self):
         str_keysequence_stop = self.convert_keysequence_to_string(
             self.setwidget.keySequenceEdit_stop
         )
-        self.set_hotkey(
-            str_keysequence_stop, self.on_keysequence_stop_triggered
+        self.set_hotkey(str_keysequence_stop, self.on_stop_hotkey_triggered)
+
+    def on_play_hotkey_triggered(self):
+        self.text = self.clipboard.text()
+        ssml = (
+            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
+            f'<voice name="{self.language_type}-{self.voice}">'
+            f'<prosody rate="{self.voice_speed}">'
+            f"{self.text}"
+            "</prosody>"
+            "</voice>"
+            "</speak>"
         )
+        # self.synthesizer.speak_ssml_async(ssml).get()
+        print(1)
+
+
+    def on_play_pause_hotkey_triggered(self):
+        print(2)
+
+    def on_stop_hotkey_triggered(self):
+        print(3)
 
     def update_dict_fn_hotkey(self, pynput_hotkey, fn):
         self.dict_fn_hotkey[fn] = pynput_hotkey
@@ -151,15 +194,6 @@ class MainWindowImpl(QMainWindow):
                 parsed_keys.append(key.lower())
         return "+".join(parsed_keys)
 
-    def on_keysequence_convert_triggered(self):
-        print(1)
-
-    def on_keysequence_play_pause_triggered(self):
-        print(2)
-
-    def on_keysequence_stop_triggered(self):
-        print(3)
-
     def _init_debugwidget(self):
         self.debugwidget = DebugWidget.Ui_Form()
         self.debugwidget.setupUi(self.mainwindow.tab_debug)
@@ -192,6 +226,7 @@ class MainWindowImpl(QMainWindow):
         self.tray_icon.hide()
         # save settings before closed
         self.write_settings()
+        self.global_hotkeys_listener.stop()
         QApplication.quit()
 
     def _load_meta_json(self):
@@ -212,10 +247,35 @@ class MainWindowImpl(QMainWindow):
             self.on_language_type_selected
         )
 
+        self.setwidget.comboBox_language_type.currentIndexChanged.connect(
+            self.on_language_type_changed
+        )
+
+    def on_language_type_changed(self, index):
+        self.language_type, _ = self.setwidget.comboBox_language_type.currentData()
+
     def on_language_type_selected(self, index):
+        """当选择了language_type时, 更新combobox_voice_type列表"""
         self.setwidget.comboBox_voice_type.clear()
         region, voices = self.setwidget.comboBox_language_type.itemData(index)
         self.setwidget.comboBox_voice_type.addItems(voices)
+
+    def _init_voice_type(self):
+        self.setwidget.comboBox_voice_type.currentTextChanged.connect(
+            self.on_voice_type_changed
+        )
+
+    def on_voice_type_changed(self, text):
+        self.voice_type = text
+        self.voice = self.voice_type.split()[0]
+
+    def _init_voice_speech(self):
+        self.setwidget.doubleSpinBox_voice_speed.valueChanged.connect(
+            self.on_voice_speed_changed
+        )
+
+    def on_voice_speed_changed(self, value):
+        self.voice_speed = value
 
     def _init_mainwindow(self):
         self.mainwindow = MainWindow.Ui_MainWindow()
@@ -269,19 +329,23 @@ class MainWindowImpl(QMainWindow):
         self.setwidget.comboBox_voice_type.setCurrentIndex(int(voice_type))
 
         # save keySequenceEdit
-        self.setwidget.keySequenceEdit_covert.setKeySequence(
-            settings.value(
-                "convert_text_to_speech", QKeySequence.StandardKey.UnknownKey
-            )
-        )
-        self.setwidget.keySequenceEdit_play_pause.setKeySequence(
-            settings.value(
-                "pause_or_resume_speech", QKeySequence.StandardKey.UnknownKey
-            )
-        )
-        self.setwidget.keySequenceEdit_stop.setKeySequence(
-            settings.value("stop_conversion", QKeySequence.StandardKey.UnknownKey)
-        )
+        # read keySequenceEdit for convert_text_to_speech
+        convert_key_sequence = settings.value("convert_text_to_speech", "")
+        if convert_key_sequence:
+            self.setwidget.keySequenceEdit_covert.setKeySequence(QKeySequence(convert_key_sequence))
+            self.set_convert_hotkey()
+
+        # read keySequenceEdit for pause_or_resume_speech
+        play_pause_key_sequence = settings.value("pause_or_resume_speech", "")
+        if play_pause_key_sequence:
+            self.setwidget.keySequenceEdit_play_pause.setKeySequence(QKeySequence(play_pause_key_sequence))
+            self.set_play_pause_hotkey()
+
+        # read keySequenceEdit for stop_conversion
+        stop_key_sequence = settings.value("stop_conversion", "")
+        if stop_key_sequence:
+            self.setwidget.keySequenceEdit_stop.setKeySequence(QKeySequence(stop_key_sequence))
+            self.set_stop_hotkey()
 
     def write_settings(self):
 
@@ -321,26 +385,23 @@ class MainWindowImpl(QMainWindow):
             "stop_conversion", self.setwidget.keySequenceEdit_stop.keySequence()
         )
 
-    def init_speech_config(self):
-        self.speech_config = speechsdk.SpeechConfig(
-            subscription=self.speech_key, region=self.speech_region
-        )
-        self.synthesizer = speechsdk.SpeechSynthesizer(speech_config=self.speech_config)
+    def init_speech_synthesizer(self):
+        try:
+            self.speech_config = speechsdk.SpeechConfig(
+                subscription=self.speech_key, region=self.speech_region
+            )
+            self.synthesizer = speechsdk.SpeechSynthesizer(
+                speech_config=self.speech_config
+            )
+        except Exception as e:
+            pass
 
     def on_play_clicked(self):
         self.text = self.playwidget.textEdit_text.toPlainText()
-        self.speed = self.setwidget.doubleSpinBox_voice_speed.text()
-        self.lang = self.setwidget.comboBox_language_type.currentText()
-
-        self.voice_type = self.setwidget.comboBox_voice_type.currentText()
-        self.voice = self.voice_type.split()[0]
-
-        self.lang, _ = self.setwidget.comboBox_language_type.currentData()
-
         self.ssml = (
-            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.lang}">'
-            f'<voice name="{self.lang}-{self.voice}">'
-            f'<prosody rate="{self.speed}">'
+            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
+            f'<voice name="{self.language_type}-{self.voice}">'
+            f'<prosody rate="{self.voice_speed}">'
             f"{self.text}"
             "</prosody>"
             "</voice>"
