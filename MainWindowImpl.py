@@ -21,9 +21,11 @@ from PySide6.QtCore import (
     QRect,
     QSettings,
     QSize,
+    QThread,
     QTime,
     QUrl,
     Qt,
+    Signal,
     Slot,
 )
 import azure.cognitiveservices.speech as speechsdk
@@ -32,6 +34,8 @@ import PlayWidget
 import SetWidget
 import DebugWidget
 from pynput import keyboard
+
+import re
 
 
 class MainWindowImpl(QMainWindow):
@@ -139,19 +143,71 @@ class MainWindowImpl(QMainWindow):
         )
         self.set_hotkey(str_keysequence_stop, self.on_stop_hotkey_triggered)
 
+    @staticmethod
+    def split_text(text: str):
+        text = re.sub(r"\n+", "\n", text)
+        list_split_text = re.split(r"(?<=。)|(?<=\.\s)|(?<=\n)", text)
+        # if用于去除空字符串
+        list_split_text = [
+            sentence.strip() for sentence in list_split_text if sentence.strip()
+        ]
+
+        return list_split_text
+
     def on_play_hotkey_triggered(self):
         self.text = self.clipboard.text()
-        ssml = (
+        self.list_split_text = self.split_text(self.text)
+
+        # print(self.list_split_text)
+
+        # 先合成第一句, 第一句需要阻塞进程
+        ssml_text0 = (
             f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
             f'<voice name="{self.language_type}-{self.voice}">'
             f'<prosody rate="{self.voice_speed}">'
-            f"{self.text}"
+            f"{self.list_split_text[0]}"
             "</prosody>"
             "</voice>"
             "</speak>"
         )
-        # self.synthesizer.speak_ssml_async(ssml).get()
+        
+
+        speech_config_text0 = speechsdk.SpeechConfig(
+            subscription=self.speech_key, region=self.speech_region
+        )
+
+        audio_config_text0 = speechsdk.audio.AudioOutputConfig(filename="test0.mp3")
+
+        synthesizer_text0 = speechsdk.SpeechSynthesizer(
+            speech_config=speech_config_text0, audio_config=audio_config_text0
+        )
         print(1)
+        synthesizer_text0.speak_ssml_async(ssml_text0)
+        print(self.list_split_text)
+        print(1)
+        
+        
+
+    def synthesize_other_speech(self):
+        """合成第二句往后, 不需要阻塞线程, 这里启动里一个线程运行"""
+        for i, text in enumerate(self.list_split_text[1:], 1):
+
+            audio_config = speechsdk.audio.AudioOutputConfig(filename="test{i}.mp3")
+            ssml = (
+                f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
+                f'<voice name="{self.language_type}-{self.voice}">'
+                f'<prosody rate="{self.voice_speed}">'
+                f"{self.text}"
+                "</prosody>"
+                "</voice>"
+                "</speak>"
+            )
+
+            synthesizer_text0 = speechsdk.SpeechSynthesizer(
+                speech_config=self.speech_config, audio_config=audio_config
+            )
+
+            synthesizer_text0.speak_ssml_async(ssml)
 
     def on_play_pause_hotkey_triggered(self):
         print(2)
@@ -198,7 +254,13 @@ class MainWindowImpl(QMainWindow):
         self.debugwidget.pushButton_debug.clicked.connect(self.on_debug_clicked)
 
     def on_debug_clicked(self):
-        print("debug")
+        code = self.debugwidget.textEdit_debug.toPlainText()
+
+        try:
+            exec(f"{code}")
+        except Exception as e:
+            print(e)
+
 
     def _init_tray_menu(self):
         self.tray_menu = QMenu()
@@ -392,7 +454,7 @@ class MainWindowImpl(QMainWindow):
                 subscription=self.speech_key, region=self.speech_region
             )
             self.synthesizer = speechsdk.SpeechSynthesizer(
-                speech_config=self.speech_config
+                speech_config=self.speech_config, audio_config=None
             )
         except Exception as e:
             pass
@@ -408,6 +470,7 @@ class MainWindowImpl(QMainWindow):
             "</voice>"
             "</speak>"
         )
+
         self.synthesizer.speak_ssml_async(self.ssml).get()
 
     def _init_app(self):

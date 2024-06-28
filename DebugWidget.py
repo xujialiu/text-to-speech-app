@@ -27,10 +27,10 @@ class Ui_Form(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.textEdit = QTextEdit(Form)
-        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit_debug = QTextEdit(Form)
+        self.textEdit_debug.setObjectName(u"textEdit_debug")
 
-        self.verticalLayout.addWidget(self.textEdit)
+        self.verticalLayout.addWidget(self.textEdit_debug)
 
         self.pushButton_debug = QPushButton(Form)
         self.pushButton_debug.setObjectName(u"pushButton_debug")

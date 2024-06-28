@@ -10,3 +10,4 @@ dist/
 .releases/
 *trial*
 api_key.text
+*test*
