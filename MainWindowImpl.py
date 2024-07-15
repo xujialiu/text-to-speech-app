@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # TODO:
-# [[bug]]: speak_ssml_async存在线程阻塞问题
+# [[improve]]: 把speak_text改成speak_ssml
 
 
 import json
@@ -11,25 +11,9 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMenu,
     QSystemTrayIcon,
-    QWidget,
-    QVBoxLayout,
-    QPushButton,
 )
-from PySide6.QtCore import (
-    QCoreApplication,
-    QMetaObject,
-    QObject,
-    QPoint,
-    QRect,
-    QSettings,
-    QSize,
-    QThread,
-    QTime,
-    QUrl,
-    Qt,
-    Signal,
-    Slot,
-)
+from PySide6.QtCore import QSettings
+
 import azure.cognitiveservices.speech as speechsdk
 import pyautogui
 import MainWindow
@@ -233,7 +217,7 @@ class MainWindowImpl(QMainWindow):
 
     def _init_tray_icon(self):
         self.tray_icon = QSystemTrayIcon(self)
-        self.tray_icon.setIcon(QIcon("icon.png"))  # 设置系统托盘图标
+        self.tray_icon.setIcon(self.icon)  # 设置系统托盘图标
         self.tray_icon.setToolTip("Azure-Text-To-Speech")
 
         self.tray_icon.setContextMenu(self.tray_menu)
@@ -263,7 +247,7 @@ class MainWindowImpl(QMainWindow):
 
     def _load_meta_json(self):
         """加载语音信息"""
-        file_path = "meta.json"
+        file_path = ".meta/meta.json"
         with open(file_path) as file:
             self.meta_data = json.load(file)
 
@@ -313,6 +297,8 @@ class MainWindowImpl(QMainWindow):
     def _init_mainwindow(self):
         self.mainwindow = MainWindow.Ui_MainWindow()
         self.mainwindow.setupUi(self)
+        self.icon = QIcon(".meta/icon.ico")
+        self.setWindowIcon(self.icon)
 
     def _init_playwidget(self):
         self.playwidget = PlayWidget.Ui_Form()
@@ -463,6 +449,7 @@ class MainWindowImpl(QMainWindow):
 if __name__ == "__main__":
     import sys
 
+    multiprocessing.freeze_support()  # This is necessary for Windows
     app = QApplication(sys.argv)
     window = MainWindowImpl()
     window.show()
