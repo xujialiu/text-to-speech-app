@@ -185,28 +185,6 @@ class Ui_Form(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_6)
 
-        self.horizontalLayout_7 = QHBoxLayout()
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.label_7 = QLabel(Form)
-        self.label_7.setObjectName(u"label_7")
-
-        self.horizontalLayout_7.addWidget(self.label_7)
-
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_7.addItem(self.horizontalSpacer_7)
-
-        self.keySequenceEdit_play_pause = QKeySequenceEdit(Form)
-        self.keySequenceEdit_play_pause.setObjectName(u"keySequenceEdit_play_pause")
-        sizePolicy.setHeightForWidth(self.keySequenceEdit_play_pause.sizePolicy().hasHeightForWidth())
-        self.keySequenceEdit_play_pause.setSizePolicy(sizePolicy)
-        self.keySequenceEdit_play_pause.setMinimumSize(QSize(300, 0))
-
-        self.horizontalLayout_7.addWidget(self.keySequenceEdit_play_pause)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_7)
-
         self.horizontalLayout_8 = QHBoxLayout()
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_8 = QLabel(Form)
@@ -249,7 +227,6 @@ class Ui_Form(object):
         self.label_5.setText(QCoreApplication.translate("Form", u"Voice speech", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Global Hotkeys:", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"Convert text to speech", None))
-        self.label_7.setText(QCoreApplication.translate("Form", u"Pause or resume speech", None))
         self.label_8.setText(QCoreApplication.translate("Form", u"Stop conversion", None))
     # retranslateUi
 

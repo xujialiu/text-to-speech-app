@@ -32,29 +32,65 @@ class Ui_Form(object):
 
         self.verticalLayout.addWidget(self.textEdit_text)
 
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout.addItem(self.horizontalSpacer_2)
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
 
-        self.pushButton_play = QPushButton(Form)
-        self.pushButton_play.setObjectName(u"pushButton_play")
+        self.pushButton_start_conv = QPushButton(Form)
+        self.pushButton_start_conv.setObjectName(u"pushButton_start_conv")
 
-        self.horizontalLayout.addWidget(self.pushButton_play)
+        self.horizontalLayout_3.addWidget(self.pushButton_start_conv)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
+
+        self.pushButton_stop_conv = QPushButton(Form)
+        self.pushButton_stop_conv.setObjectName(u"pushButton_stop_conv")
+
+        self.horizontalLayout_3.addWidget(self.pushButton_stop_conv)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout.addItem(self.horizontalSpacer)
+        self.horizontalLayout_3.addItem(self.horizontalSpacer)
 
-        self.pushButton_2 = QPushButton(Form)
-        self.pushButton_2.setObjectName(u"pushButton_2")
 
-        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout.addItem(self.horizontalSpacer_3)
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_6)
+
+        self.pushButton_pause_resume = QPushButton(Form)
+        self.pushButton_pause_resume.setObjectName(u"pushButton_pause_resume")
+
+        self.horizontalLayout_2.addWidget(self.pushButton_pause_resume)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_5)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_7)
+
+        self.pushButton_save = QPushButton(Form)
+        self.pushButton_save.setObjectName(u"pushButton_save")
+
+        self.horizontalLayout.addWidget(self.pushButton_save)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_8)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -71,7 +107,9 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.textEdit_text.setPlaceholderText(QCoreApplication.translate("Form", u"Please enter the text to be converted...", None))
-        self.pushButton_play.setText(QCoreApplication.translate("Form", u"Play", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Form", u"Save", None))
+        self.pushButton_start_conv.setText(QCoreApplication.translate("Form", u"Start Converting", None))
+        self.pushButton_stop_conv.setText(QCoreApplication.translate("Form", u"Stop Converting", None))
+        self.pushButton_pause_resume.setText(QCoreApplication.translate("Form", u"Pause/Resume", None))
+        self.pushButton_save.setText(QCoreApplication.translate("Form", u"Save", None))
     # retranslateUi
 

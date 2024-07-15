@@ -2,6 +2,7 @@
 # TODO:
 # [[bug]]: speak_ssml_async存在线程阻塞问题
 
+
 import json
 from PySide6.QtGui import QAction, QIcon, QKeySequence
 from PySide6.QtWidgets import (
@@ -21,17 +22,22 @@ from PySide6.QtCore import (
     QRect,
     QSettings,
     QSize,
+    QThread,
     QTime,
     QUrl,
     Qt,
+    Signal,
     Slot,
 )
 import azure.cognitiveservices.speech as speechsdk
+import pyautogui
 import MainWindow
 import PlayWidget
 import SetWidget
 import DebugWidget
 from pynput import keyboard
+import pyautogui
+from TTSPlayer import MyAudioPlayer, MySpeechSynthesizer
 
 
 class MainWindowImpl(QMainWindow):
@@ -61,6 +67,9 @@ class MainWindowImpl(QMainWindow):
         self._init_tray_menu()
         self._init_tray_icon()
 
+        self._init_stop_conv_button()
+        self._init_start_conv_button()
+
         self._init_keysequenceedit()
 
         self._init_speech_region()
@@ -69,6 +78,14 @@ class MainWindowImpl(QMainWindow):
         self._init_voice_type()
         self._init_voice_speech()
         self._init_clipboard()
+
+    def _init_stop_conv_button(self):
+        self.playwidget.pushButton_stop_conv.clicked.connect(self.on_stop_conv_clicked)
+
+    def _init_start_conv_button(self):
+        self.playwidget.pushButton_start_conv.clicked.connect(
+            self.on_start_conv_clicked
+        )
 
     def _init_speech_key(self):
         self.setwidget.lineEdit_speech_key.textChanged.connect(
@@ -92,17 +109,14 @@ class MainWindowImpl(QMainWindow):
         self.clipboard = QApplication.clipboard()
 
     def _init_keysequenceedit(self):
-
         self.setwidget.keySequenceEdit_covert.keySequenceChanged.connect(
             self.set_convert_hotkey
-        )
-        self.setwidget.keySequenceEdit_play_pause.keySequenceChanged.connect(
-            self.set_play_pause_hotkey
         )
         self.setwidget.keySequenceEdit_stop.keySequenceChanged.connect(
             self.set_stop_hotkey
         )
 
+    # 关于快捷键的逻辑------
     def set_hotkey(self, str_keysequence, on_keysequence_triggered):
         if str_keysequence:
             # 如果global_hotkeys_listener不为None, 先停下
@@ -121,17 +135,15 @@ class MainWindowImpl(QMainWindow):
                 )
                 self.global_hotkeys_listener.start()
 
+    @staticmethod
+    def convert_keysequence_to_string(keysequenceedit):
+        return keysequenceedit.keySequence().toString(QKeySequence.NativeText)
+
     def set_convert_hotkey(self):
         str_keysequence_convert = self.convert_keysequence_to_string(
             self.setwidget.keySequenceEdit_covert
         )
         self.set_hotkey(str_keysequence_convert, self.on_play_hotkey_triggered)
-
-    def set_play_pause_hotkey(self):
-        str_keysequence_play_pause = self.convert_keysequence_to_string(
-            self.setwidget.keySequenceEdit_play_pause
-        )
-        self.set_hotkey(str_keysequence_play_pause, self.on_play_pause_hotkey_triggered)
 
     def set_stop_hotkey(self):
         str_keysequence_stop = self.convert_keysequence_to_string(
@@ -140,6 +152,9 @@ class MainWindowImpl(QMainWindow):
         self.set_hotkey(str_keysequence_stop, self.on_stop_hotkey_triggered)
 
     def on_play_hotkey_triggered(self):
+        # 模拟 Ctrl+C 操作来复制选中的文本
+        pyautogui.hotkey("ctrl", "c")
+
         self.text = self.clipboard.text()
         ssml = (
             f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
@@ -150,7 +165,6 @@ class MainWindowImpl(QMainWindow):
             "</voice>"
             "</speak>"
         )
-        # self.synthesizer.speak_ssml_async(ssml).get()
         print(1)
 
     def on_play_pause_hotkey_triggered(self):
@@ -158,6 +172,8 @@ class MainWindowImpl(QMainWindow):
 
     def on_stop_hotkey_triggered(self):
         print(3)
+
+    # 关于快捷键的逻辑------
 
     def update_dict_fn_hotkey(self, pynput_hotkey, fn):
         self.dict_fn_hotkey[fn] = pynput_hotkey
@@ -170,10 +186,6 @@ class MainWindowImpl(QMainWindow):
                     self.dict_hotkey_fn[hotkey] = fn
         except:
             pass
-
-    @staticmethod
-    def convert_keysequence_to_string(keysequenceedit):
-        return keysequenceedit.keySequence().toString(QKeySequence.NativeText)
 
     def parse_hotkey(self, key_sequence):
         key_map = {
@@ -283,10 +295,7 @@ class MainWindowImpl(QMainWindow):
         self.playwidget = PlayWidget.Ui_Form()
         self.playwidget.setupUi(self.mainwindow.tab_play)
 
-        self._init_play_button()
-
-    def _init_play_button(self):
-        self.playwidget.pushButton_play.clicked.connect(self.on_play_clicked)
+        self._init_start_conv_button()
 
     def _init_setwidget(self):
         self.setwidget = SetWidget.Ui_Form()
@@ -334,13 +343,6 @@ class MainWindowImpl(QMainWindow):
                 QKeySequence(convert_key_sequence)
             )
 
-        # read keySequenceEdit for pause_or_resume_speech
-        play_pause_key_sequence = settings.value("pause_or_resume_speech", "")
-        if play_pause_key_sequence:
-            self.setwidget.keySequenceEdit_play_pause.setKeySequence(
-                QKeySequence(play_pause_key_sequence)
-            )
-
         # read keySequenceEdit for stop_conversion
         stop_key_sequence = settings.value("stop_conversion", "")
         if stop_key_sequence:
@@ -378,10 +380,7 @@ class MainWindowImpl(QMainWindow):
             "convert_text_to_speech",
             self.setwidget.keySequenceEdit_covert.keySequence(),
         )
-        settings.setValue(
-            "pause_or_resume_speech",
-            self.setwidget.keySequenceEdit_play_pause.keySequence(),
-        )
+
         settings.setValue(
             "stop_conversion", self.setwidget.keySequenceEdit_stop.keySequence()
         )
@@ -397,18 +396,14 @@ class MainWindowImpl(QMainWindow):
         except Exception as e:
             pass
 
-    def on_play_clicked(self):
-        self.text = self.playwidget.textEdit_text.toPlainText()
-        self.ssml = (
-            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
-            f'<voice name="{self.language_type}-{self.voice}">'
-            f'<prosody rate="{self.voice_speed}">'
-            f"{self.text}"
-            "</prosody>"
-            "</voice>"
-            "</speak>"
-        )
-        self.synthesizer.speak_ssml_async(self.ssml).get()
+    def on_start_conv_clicked(self):
+        print(1)
+
+    def on_stop_conv_clicked(self):
+        print(2)
+
+    def on_play_clicked_executor(self, synthesizer, ssml):
+        synthesizer.speak_ssml_async(ssml).get()
 
     def _init_app(self):
         app = QApplication.instance()
