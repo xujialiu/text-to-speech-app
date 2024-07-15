@@ -4,6 +4,7 @@
 
 
 import json
+import multiprocessing
 from PySide6.QtGui import QAction, QIcon, QKeySequence
 from PySide6.QtWidgets import (
     QApplication,
@@ -55,7 +56,7 @@ class MainWindowImpl(QMainWindow):
 
         self.init_ui()
         self.read_settings()
-        self.init_speech_synthesizer()
+        self.init_tts()
 
     def init_ui(self):
         self._init_app()
@@ -69,6 +70,7 @@ class MainWindowImpl(QMainWindow):
 
         self._init_stop_conv_button()
         self._init_start_conv_button()
+        self._init_pause_resume_button()
 
         self._init_keysequenceedit()
 
@@ -79,12 +81,25 @@ class MainWindowImpl(QMainWindow):
         self._init_voice_speech()
         self._init_clipboard()
 
+    def init_tts(self):
+        self.speech_synthesizer = None
+        self.audio_process = None
+        self.is_converting = multiprocessing.Value("b", False)
+        self.is_paused = multiprocessing.Value("b", False)
+        self.process_synthesizer = None
+        self.process_player = None
+
     def _init_stop_conv_button(self):
         self.playwidget.pushButton_stop_conv.clicked.connect(self.on_stop_conv_clicked)
 
     def _init_start_conv_button(self):
         self.playwidget.pushButton_start_conv.clicked.connect(
             self.on_start_conv_clicked
+        )
+
+    def _init_pause_resume_button(self):
+        self.playwidget.pushButton_pause_resume.clicked.connect(
+            self.on_pause_resume_clicked
         )
 
     def _init_speech_key(self):
@@ -94,7 +109,6 @@ class MainWindowImpl(QMainWindow):
 
     def on_speech_key_changed(self, text):
         self.speech_key = text
-        self.init_speech_synthesizer()
 
     def _init_speech_region(self):
         self.setwidget.lineEdit_speech_region.textChanged.connect(
@@ -103,7 +117,6 @@ class MainWindowImpl(QMainWindow):
 
     def on_speech_region_changed(self, text):
         self.speech_region = text
-        self.init_speech_synthesizer()
 
     def _init_clipboard(self):
         self.clipboard = QApplication.clipboard()
@@ -233,6 +246,15 @@ class MainWindowImpl(QMainWindow):
 
     def on_close_clicked(self):
         """真正的关闭事件"""
+        self.on_stop_conv_clicked()
+        # 清理资源
+        if self.process_synthesizer:
+            self.process_synthesizer.terminate()
+            self.process_synthesizer.close()
+        if self.process_player:
+            self.process_player.terminate()
+            self.process_player.close()
+
         self.tray_icon.hide()
         # save settings before closed
         self.write_settings()
@@ -240,6 +262,7 @@ class MainWindowImpl(QMainWindow):
         QApplication.quit()
 
     def _load_meta_json(self):
+        """加载语音信息"""
         file_path = "meta.json"
         with open(file_path) as file:
             self.meta_data = json.load(file)
@@ -303,14 +326,24 @@ class MainWindowImpl(QMainWindow):
 
     def closeEvent(self, event):
         """点击主窗口右上角的x的事件, 并非真正的关闭事件"""
-        event.ignore()
-        self.hide()
-        self.tray_icon.showMessage(
-            "Azure-Text-To-Speech",
-            "The program has been minimized to the system tray.",
-            QSystemTrayIcon.Information,
-            2000,
-        )
+        """暂时不实现上面的逻辑, 按照正常标准退出"""
+        # event.ignore()
+        # self.hide()
+        # self.tray_icon.showMessage(
+        #     "Azure-Text-To-Speech",
+        #     "The program has been minimized to the system tray.",
+        #     QSystemTrayIcon.Information,
+        #     2000,
+        # )
+
+        self.on_stop_conv_clicked()
+        # 清理资源
+        if self.process_synthesizer:
+            self.process_synthesizer.terminate()
+            self.process_synthesizer.close()
+        if self.process_player:
+            self.process_player.terminate()
+            self.process_player.close()
 
     def read_settings(self):
         settings = QSettings("xujialiu", "text-to-speech")
@@ -385,25 +418,42 @@ class MainWindowImpl(QMainWindow):
             "stop_conversion", self.setwidget.keySequenceEdit_stop.keySequence()
         )
 
-    def init_speech_synthesizer(self):
-        try:
-            self.speech_config = speechsdk.SpeechConfig(
-                subscription=self.speech_key, region=self.speech_region
-            )
-            self.synthesizer = speechsdk.SpeechSynthesizer(
-                speech_config=self.speech_config
-            )
-        except Exception as e:
-            pass
-
+    # working!!!
     def on_start_conv_clicked(self):
-        print(1)
+        self.on_stop_conv_clicked()
+
+        self.audio_queue = multiprocessing.Queue()
+        self.is_converting.value = True
+        self.is_paused.value = False
+        speech_key = self.setwidget.lineEdit_speech_key.text()
+        service_region = self.setwidget.lineEdit_speech_region.text()
+        text = self.playwidget.textEdit_text.toPlainText()
+
+        # 创建synthesizer进程
+        self.process_synthesizer = MySpeechSynthesizer(
+            speech_key, service_region, self.audio_queue, text
+        )
+        self.process_synthesizer.start()
+
+        # 创建player进程
+        self.process_player = MyAudioPlayer(
+            self.audio_queue, self.is_converting, self.is_paused
+        )
+        self.process_player.start()
 
     def on_stop_conv_clicked(self):
-        print(2)
+        if self.process_synthesizer:
+            self.process_synthesizer.terminate()
+        if self.process_player:
+            self.process_player.terminate()
+        self.is_converting.value = False
+        self.is_paused.value = False
 
-    def on_play_clicked_executor(self, synthesizer, ssml):
-        synthesizer.speak_ssml_async(ssml).get()
+    def on_pause_resume_clicked(self):
+        if self.is_paused.value:
+            self.is_paused.value = False
+        else:
+            self.is_paused.value = True
 
     def _init_app(self):
         app = QApplication.instance()
