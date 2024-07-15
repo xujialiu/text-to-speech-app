@@ -6,7 +6,6 @@ __pycache__/
 .data/
 build/
 dist/
-*.spec
 .releases/
 *trial*
 api_key.text
