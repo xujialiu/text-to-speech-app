@@ -23,6 +23,7 @@ import DebugWidget
 from pynput import keyboard
 import pyautogui
 from TTSPlayer import MyAudioPlayer, MySpeechSynthesizer
+import VERSION
 
 
 class MainWindowImpl(QMainWindow):
@@ -446,9 +447,9 @@ class MainWindowImpl(QMainWindow):
         app.setStyle("fusion")
 
 
+# 仅用于测试
 if __name__ == "__main__":
     import sys
-
     multiprocessing.freeze_support()  # This is necessary for Windows
     app = QApplication(sys.argv)
     window = MainWindowImpl()
