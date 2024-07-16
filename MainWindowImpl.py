@@ -13,8 +13,6 @@ from PySide6.QtWidgets import (
     QSystemTrayIcon,
 )
 from PySide6.QtCore import QSettings
-
-import azure.cognitiveservices.speech as speechsdk
 import pyautogui
 import MainWindow
 import PlayWidget
@@ -371,7 +369,6 @@ class MainWindowImpl(QMainWindow):
             )
 
     def write_settings(self):
-
         settings = QSettings("xujialiu", "text-to-speech")
 
         # save speech_key setting
@@ -415,10 +412,20 @@ class MainWindowImpl(QMainWindow):
         speech_key = self.setwidget.lineEdit_speech_key.text()
         service_region = self.setwidget.lineEdit_speech_region.text()
         text = self.playwidget.textEdit_text.toPlainText()
+        
+        ssml = (
+            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
+            f'<voice name="{self.language_type}-{self.voice}">'
+            f'<prosody rate="{self.voice_speed}">'
+            f"{text}"
+            "</prosody>"
+            "</voice>"
+            "</speak>"
+        )
 
         # 创建synthesizer进程
         self.process_synthesizer = MySpeechSynthesizer(
-            speech_key, service_region, self.audio_queue, text
+            speech_key, service_region, self.audio_queue, ssml
         )
         self.process_synthesizer.start()
 

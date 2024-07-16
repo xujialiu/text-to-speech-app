@@ -31,12 +31,12 @@ class MyAudioPlayer(multiprocessing.Process):
 
 
 class MySpeechSynthesizer(multiprocessing.Process):
-    def __init__(self, speech_key, service_region, audio_queue, text):
+    def __init__(self, speech_key, service_region, audio_queue, ssml):
         super().__init__()
         self.speech_key = speech_key
         self.service_region = service_region
         self.audio_queue = audio_queue
-        self.text = text
+        self.ssml = ssml
 
     def run(self):
         speech_config = speechsdk.SpeechConfig(
@@ -55,4 +55,4 @@ class MySpeechSynthesizer(multiprocessing.Process):
 
         # 这里不要用speak_text_async, 它会产生一个我没法控制的额外进程
         # 这里直接用speak_text, 它会阻塞本进程, 但是没有关系, 需要的时候terminate关闭该进程即可
-        self.speech_synthesizer.speak_text(self.text)
+        self.speech_synthesizer.speak_ssml(self.ssml)
