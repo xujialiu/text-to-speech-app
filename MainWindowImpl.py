@@ -286,6 +286,7 @@ class MainWindowImpl(QMainWindow):
         self.voice = self.voice_type.split()[0]
 
     def _init_voice_speech(self):
+        self.voice_speed = self.setwidget.doubleSpinBox_voice_speed.text()
         self.setwidget.doubleSpinBox_voice_speed.valueChanged.connect(
             self.on_voice_speed_changed
         )
