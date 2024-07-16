@@ -29,6 +29,10 @@ class Ui_Form(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.textEdit_text = QTextEdit(Form)
         self.textEdit_text.setObjectName(u"textEdit_text")
+        font = QFont()
+        font.setFamilies([u"\u5b8b\u4f53"])
+        font.setPointSize(12)
+        self.textEdit_text.setFont(font)
 
         self.verticalLayout.addWidget(self.textEdit_text)
 
