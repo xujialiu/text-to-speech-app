@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>854</width>
-    <height>685</height>
+    <width>1216</width>
+    <height>942</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QLabel" name="label_10">
      <property name="font">
@@ -22,7 +22,7 @@
       </font>
      </property>
      <property name="text">
-      <string>General:</string>
+      <string>Basic settings</string>
      </property>
     </widget>
    </item>
@@ -219,6 +219,19 @@
     </layout>
    </item>
    <item>
+    <spacer name="verticalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>188</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
     <widget class="QLabel" name="label_9">
      <property name="font">
       <font>
@@ -226,7 +239,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Global Hotkeys:</string>
+      <string>Hotkeys:</string>
      </property>
     </widget>
    </item>
@@ -242,7 +255,7 @@
      <item>
       <widget class="QLabel" name="label_6">
        <property name="text">
-        <string>Convert text to speech</string>
+        <string>sStart converting (clipboard text to speech)</string>
        </property>
       </widget>
      </item>
@@ -260,7 +273,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QKeySequenceEdit" name="keySequenceEdit_covert">
+      <widget class="QKeySequenceEdit" name="keySequenceEdit_start_conv">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -282,7 +295,7 @@
      <item>
       <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>Stop conversion</string>
+        <string>Stop converting</string>
        </property>
       </widget>
      </item>
@@ -300,7 +313,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QKeySequenceEdit" name="keySequenceEdit_stop">
+      <widget class="QKeySequenceEdit" name="keySequenceEdit_stop_conv">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -318,17 +331,120 @@
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer">
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Pause/resume</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_9">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QKeySequenceEdit" name="keySequenceEdit_pause_resume">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>162</height>
+       <height>187</height>
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_12">
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Advanced settings:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Text formating (RegExp)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>162</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit"/>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

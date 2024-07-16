@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # TODO:
-# [[improve]]: 把speak_text改成speak_ssml
 
 
 import json
@@ -105,10 +104,10 @@ class MainWindowImpl(QMainWindow):
         self.clipboard = QApplication.clipboard()
 
     def _init_keysequenceedit(self):
-        self.setwidget.keySequenceEdit_covert.keySequenceChanged.connect(
+        self.setwidget.keySequenceEdit_start_conv.keySequenceChanged.connect(
             self.set_convert_hotkey
         )
-        self.setwidget.keySequenceEdit_stop.keySequenceChanged.connect(
+        self.setwidget.keySequenceEdit_stop_conv.keySequenceChanged.connect(
             self.set_stop_hotkey
         )
 
@@ -137,13 +136,13 @@ class MainWindowImpl(QMainWindow):
 
     def set_convert_hotkey(self):
         str_keysequence_convert = self.convert_keysequence_to_string(
-            self.setwidget.keySequenceEdit_covert
+            self.setwidget.keySequenceEdit_start_conv
         )
         self.set_hotkey(str_keysequence_convert, self.on_play_hotkey_triggered)
 
     def set_stop_hotkey(self):
         str_keysequence_stop = self.convert_keysequence_to_string(
-            self.setwidget.keySequenceEdit_stop
+            self.setwidget.keySequenceEdit_stop_conv
         )
         self.set_hotkey(str_keysequence_stop, self.on_stop_hotkey_triggered)
 
@@ -359,14 +358,14 @@ class MainWindowImpl(QMainWindow):
         # read keySequenceEdit for convert_text_to_speech
         convert_key_sequence = settings.value("convert_text_to_speech", "")
         if convert_key_sequence:
-            self.setwidget.keySequenceEdit_covert.setKeySequence(
+            self.setwidget.keySequenceEdit_start_conv.setKeySequence(
                 QKeySequence(convert_key_sequence)
             )
 
         # read keySequenceEdit for stop_conversion
         stop_key_sequence = settings.value("stop_conversion", "")
         if stop_key_sequence:
-            self.setwidget.keySequenceEdit_stop.setKeySequence(
+            self.setwidget.keySequenceEdit_stop_conv.setKeySequence(
                 QKeySequence(stop_key_sequence)
             )
 
@@ -397,11 +396,11 @@ class MainWindowImpl(QMainWindow):
         # save keySequenceEdit
         settings.setValue(
             "convert_text_to_speech",
-            self.setwidget.keySequenceEdit_covert.keySequence(),
+            self.setwidget.keySequenceEdit_start_conv.keySequence(),
         )
 
         settings.setValue(
-            "stop_conversion", self.setwidget.keySequenceEdit_stop.keySequence()
+            "stop_conversion", self.setwidget.keySequenceEdit_stop_conv.keySequence()
         )
 
     # working!!!
