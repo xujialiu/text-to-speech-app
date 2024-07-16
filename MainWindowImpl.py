@@ -321,6 +321,7 @@ class MainWindowImpl(QMainWindow):
         #     QSystemTrayIcon.Information,
         #     2000,
         # )
+        self.write_settings()
 
         self.on_stop_conv_clicked()
         # 清理资源
@@ -413,7 +414,7 @@ class MainWindowImpl(QMainWindow):
         speech_key = self.setwidget.lineEdit_speech_key.text()
         service_region = self.setwidget.lineEdit_speech_region.text()
         text = self.playwidget.textEdit_text.toPlainText()
-        
+
         ssml = (
             f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
             f'<voice name="{self.language_type}-{self.voice}">'
@@ -458,6 +459,7 @@ class MainWindowImpl(QMainWindow):
 # 仅用于测试
 if __name__ == "__main__":
     import sys
+
     multiprocessing.freeze_support()  # This is necessary for Windows
     app = QApplication(sys.argv)
     window = MainWindowImpl()
