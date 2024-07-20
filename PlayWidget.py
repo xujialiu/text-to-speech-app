@@ -15,8 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QPushButton, QSizePolicy,
-    QSpacerItem, QTextEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QSpacerItem, QTextEdit,
+    QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -83,18 +84,26 @@ class Ui_Form(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_7)
-
         self.pushButton_save = QPushButton(Form)
         self.pushButton_save.setObjectName(u"pushButton_save")
 
         self.horizontalLayout.addWidget(self.pushButton_save)
 
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.pushButton_select_folder = QPushButton(Form)
+        self.pushButton_select_folder.setObjectName(u"pushButton_select_folder")
 
-        self.horizontalLayout.addItem(self.horizontalSpacer_8)
+        self.horizontalLayout.addWidget(self.pushButton_select_folder)
+
+        self.label = QLabel(Form)
+        self.label.setObjectName(u"label")
+
+        self.horizontalLayout.addWidget(self.label)
+
+        self.lineEdit_folder = QLineEdit(Form)
+        self.lineEdit_folder.setObjectName(u"lineEdit_folder")
+        self.lineEdit_folder.setReadOnly(True)
+
+        self.horizontalLayout.addWidget(self.lineEdit_folder)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -115,5 +124,7 @@ class Ui_Form(object):
         self.pushButton_stop_conv.setText(QCoreApplication.translate("Form", u"Stop Converting", None))
         self.pushButton_pause_resume.setText(QCoreApplication.translate("Form", u"Pause/Resume", None))
         self.pushButton_save.setText(QCoreApplication.translate("Form", u"Save", None))
+        self.pushButton_select_folder.setText(QCoreApplication.translate("Form", u"Select Folder", None))
+        self.label.setText(QCoreApplication.translate("Form", u"MP3 save to:", None))
     # retranslateUi
 

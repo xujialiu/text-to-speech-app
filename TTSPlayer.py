@@ -56,3 +56,20 @@ class MySpeechSynthesizer(multiprocessing.Process):
         # 这里不要用speak_text_async, 它会产生一个我没法控制的额外进程
         # 这里直接用speak_text, 它会阻塞本进程, 但是没有关系, 需要的时候terminate关闭该进程即可
         self.speech_synthesizer.speak_ssml(self.ssml)
+
+
+def Speech2MP3(speech_key, service_region, ssml, file_name):
+    speech_config = speechsdk.SpeechConfig(
+        subscription=speech_key, region=service_region
+    )
+    speech_config.set_speech_synthesis_output_format(
+        speechsdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3
+    )
+
+    file_config = speechsdk.audio.AudioOutputConfig(filename=file_name)
+    speech_synthesizer = speechsdk.SpeechSynthesizer(
+        speech_config=speech_config, audio_config=file_config
+    )
+
+    result = speech_synthesizer.speak_ssml_async(ssml).get()
+    return result

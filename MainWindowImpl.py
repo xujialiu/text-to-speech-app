@@ -4,22 +4,24 @@
 
 import json
 import multiprocessing
+from pathlib import Path
 from PySide6.QtGui import QAction, QIcon, QKeySequence
 from PySide6.QtWidgets import (
     QApplication,
+    QFileDialog,
     QMainWindow,
     QMenu,
     QSystemTrayIcon,
 )
 from PySide6.QtCore import QSettings
-import pyautogui
+
 import MainWindow
 import PlayWidget
 import SetWidget
 import DebugWidget
 from pynput import keyboard
 import pyautogui
-from TTSPlayer import MyAudioPlayer, MySpeechSynthesizer
+from TTSPlayer import MyAudioPlayer, MySpeechSynthesizer, Speech2MP3
 import VERSION
 
 
@@ -63,6 +65,9 @@ class MainWindowImpl(QMainWindow):
         self._init_voice_speech()
         self._init_clipboard()
 
+        self._init_save_button()
+        self._init_select_folder_button()
+
     def init_tts(self):
         self.speech_synthesizer = None
         self.audio_process = None
@@ -70,6 +75,39 @@ class MainWindowImpl(QMainWindow):
         self.is_paused = multiprocessing.Value("b", False)
         self.process_synthesizer = None
         self.process_player = None
+
+    # working
+    def _init_save_button(self):
+        self.playwidget.pushButton_save.clicked.connect(self.on_save_clicked)
+
+    def on_save_clicked(self):
+        """点击save, 启动一个进程, 保存为mp3"""
+        self.get_file_path()
+        text = self.playwidget.textEdit_text.toPlainText()
+        self.generate_ssml(text)
+        print(self.file_path.__str__())
+        # 添加转换完成的提示框, 需要用到qthread
+        result = Speech2MP3(self.speech_key, self.speech_region, self.ssml, str(self.file_path))
+
+    def get_file_path(self):
+        self.folder = Path(self.folder_text)
+        idx = 1
+        while True:
+            self.file_path = self.folder / f"text-to-speech_{idx}.mp3"
+            if not self.file_path.exists():
+                break
+            idx += 1
+        print(self.file_path)
+
+    def _init_select_folder_button(self):
+        self.playwidget.pushButton_select_folder.clicked.connect(
+            self.on_select_folder_clicked
+        )
+
+    def on_select_folder_clicked(self):
+        self.folder_text = QFileDialog.getExistingDirectory(self, "选择文件夹")
+        if self.folder_text:
+            self.playwidget.lineEdit_folder.setText(self.folder_text)
 
     def _init_stop_conv_button(self):
         self.playwidget.pushButton_stop_conv.clicked.connect(self.on_stop_conv_clicked)
@@ -148,13 +186,14 @@ class MainWindowImpl(QMainWindow):
             self.setwidget.keySequenceEdit_stop_conv
         )
         self.set_hotkey(str_keysequence_stop, self.on_stop_hotkey_triggered)
-        
-        
+
     def set_pasue_resume_hotkey(self):
         str_keysequence_pause_resume = self.convert_keysequence_to_string(
             self.setwidget.keySequenceEdit_pause_resume
         )
-        self.set_hotkey(str_keysequence_pause_resume, self.on_pause_resume_hotkey_triggered)
+        self.set_hotkey(
+            str_keysequence_pause_resume, self.on_pause_resume_hotkey_triggered
+        )
 
     def on_pause_resume_hotkey_triggered(self):
         self.on_pause_resume_clicked()
@@ -368,7 +407,7 @@ class MainWindowImpl(QMainWindow):
             self.setwidget.keySequenceEdit_stop_conv.setKeySequence(
                 QKeySequence(stop_key_sequence)
             )
-        
+
         stop_key_sequence = settings.value("pause / resume", "")
         if stop_key_sequence:
             self.setwidget.keySequenceEdit_pause_resume.setKeySequence(
@@ -408,7 +447,7 @@ class MainWindowImpl(QMainWindow):
         settings.setValue(
             "stop_converting", self.setwidget.keySequenceEdit_stop_conv.keySequence()
         )
-        
+
         settings.setValue(
             "pause / resume", self.setwidget.keySequenceEdit_pause_resume.keySequence()
         )
@@ -427,26 +466,18 @@ class MainWindowImpl(QMainWindow):
         self.audio_queue = (
             multiprocessing.Queue()
         )  # 尝试使用multiprocessing.Manager代替它
-        
+
         # self.audio_queue = multiprocessing.Manager().Queue()
         self.is_converting.value = True
         self.is_paused.value = False
         speech_key = self.setwidget.lineEdit_speech_key.text()
         service_region = self.setwidget.lineEdit_speech_region.text()
 
-        ssml = (
-            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
-            f'<voice name="{self.language_type}-{self.voice}">'
-            f'<prosody rate="{self.voice_speed}">'
-            f"{text}"
-            "</prosody>"
-            "</voice>"
-            "</speak>"
-        )
+        self.generate_ssml(text)
 
         # 创建synthesizer进程
         self.process_synthesizer = MySpeechSynthesizer(
-            speech_key, service_region, self.audio_queue, ssml
+            speech_key, service_region, self.audio_queue, self.ssml
         )
         self.process_synthesizer.start()
 
@@ -455,6 +486,17 @@ class MainWindowImpl(QMainWindow):
             self.audio_queue, self.is_converting, self.is_paused
         )
         self.process_player.start()
+
+    def generate_ssml(self, text):
+        self.ssml = (
+            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
+            f'<voice name="{self.language_type}-{self.voice}">'
+            f'<prosody rate="{self.voice_speed}">'
+            f"{text}"
+            "</prosody>"
+            "</voice>"
+            "</speak>"
+        )
 
     def stop_conv(self):
         if self.process_synthesizer:
