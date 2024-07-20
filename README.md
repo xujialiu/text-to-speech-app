@@ -11,10 +11,9 @@
 
 
 
-
 ## Documentation
 
-[Simple Chinese Documentation](./README.zh.md) | [Traditional Chinese Documentation](./README.zht.md) | [English Documentation](./README.md)
+[Simple Chinese Documentation](./README.zh.md) | [English Documentation](./README.md)
 
 ## Changelog
 
