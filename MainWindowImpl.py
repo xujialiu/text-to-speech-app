@@ -30,7 +30,7 @@ class MainWindowImpl(QMainWindow):
         self.play_pause = 0
         self.global_hotkeys_listener = None
         self.dict_fn_hotkey = {
-            self.on_play_hotkey_triggered: None,
+            self.on_start_conv_hotkey_triggered: None,
             self.on_play_pause_hotkey_triggered: None,
             self.on_stop_hotkey_triggered: None,
         }
@@ -138,7 +138,7 @@ class MainWindowImpl(QMainWindow):
         str_keysequence_convert = self.convert_keysequence_to_string(
             self.setwidget.keySequenceEdit_start_conv
         )
-        self.set_hotkey(str_keysequence_convert, self.on_play_hotkey_triggered)
+        self.set_hotkey(str_keysequence_convert, self.on_start_conv_hotkey_triggered)
 
     def set_stop_hotkey(self):
         str_keysequence_stop = self.convert_keysequence_to_string(
@@ -146,27 +146,18 @@ class MainWindowImpl(QMainWindow):
         )
         self.set_hotkey(str_keysequence_stop, self.on_stop_hotkey_triggered)
 
-    def on_play_hotkey_triggered(self):
-        # 模拟 Ctrl+C 操作来复制选中的文本
-        pyautogui.hotkey("ctrl", "c")
-
-        self.text = self.clipboard.text()
-        ssml = (
-            f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
-            f'<voice name="{self.language_type}-{self.voice}">'
-            f'<prosody rate="{self.voice_speed}">'
-            f"{self.text}"
-            "</prosody>"
-            "</voice>"
-            "</speak>"
-        )
-        print(1)
-
     def on_play_pause_hotkey_triggered(self):
-        print(2)
+        self.on_pause_resume_clicked()
 
     def on_stop_hotkey_triggered(self):
-        print(3)
+        """按下stop converting and pause, 停止转换文本"""
+        self.stop_conv()
+        self.stop_play()
+
+    def on_start_conv_hotkey_triggered(self):
+        """按下start converting, 从剪切板获取文本并转换成语音"""
+        text = self.clipboard.text()
+        self.start_conv_and_play(text)
 
     # 关于快捷键的逻辑------
 
@@ -355,17 +346,22 @@ class MainWindowImpl(QMainWindow):
         self.setwidget.comboBox_voice_type.setCurrentIndex(int(voice_type))
 
         # save keySequenceEdit
-        # read keySequenceEdit for convert_text_to_speech
-        convert_key_sequence = settings.value("convert_text_to_speech", "")
+
+        convert_key_sequence = settings.value("start_converting", "")
         if convert_key_sequence:
             self.setwidget.keySequenceEdit_start_conv.setKeySequence(
                 QKeySequence(convert_key_sequence)
             )
 
-        # read keySequenceEdit for stop_conversion
-        stop_key_sequence = settings.value("stop_conversion", "")
+        stop_key_sequence = settings.value("stop_converting", "")
         if stop_key_sequence:
             self.setwidget.keySequenceEdit_stop_conv.setKeySequence(
+                QKeySequence(stop_key_sequence)
+            )
+        
+        stop_key_sequence = settings.value("pause / resume", "")
+        if stop_key_sequence:
+            self.setwidget.keySequenceEdit_pause_resume.setKeySequence(
                 QKeySequence(stop_key_sequence)
             )
 
@@ -395,24 +391,38 @@ class MainWindowImpl(QMainWindow):
 
         # save keySequenceEdit
         settings.setValue(
-            "convert_text_to_speech",
+            "start_converting",
             self.setwidget.keySequenceEdit_start_conv.keySequence(),
         )
 
         settings.setValue(
-            "stop_conversion", self.setwidget.keySequenceEdit_stop_conv.keySequence()
+            "stop_converting", self.setwidget.keySequenceEdit_stop_conv.keySequence()
+        )
+        
+        settings.setValue(
+            "pause / resume", self.setwidget.keySequenceEdit_pause_resume.keySequence()
         )
 
     # working!!!
     def on_start_conv_clicked(self):
-        self.on_stop_conv_clicked()
+        text = self.playwidget.textEdit_text.toPlainText()
+        self.start_conv_and_play(text)
 
-        self.audio_queue = multiprocessing.Queue()
+    def on_start_conv_hotkey_clicked(self):
+        text = self.clipboard.text()
+        self.start_conv_and_play(text)
+
+    def start_conv_and_play(self, text):
+        self.on_stop_conv_clicked()
+        self.audio_queue = (
+            multiprocessing.Queue()
+        )  # 尝试使用multiprocessing.Manager代替它
+        
+        # self.audio_queue = multiprocessing.Manager().Queue()
         self.is_converting.value = True
         self.is_paused.value = False
         speech_key = self.setwidget.lineEdit_speech_key.text()
         service_region = self.setwidget.lineEdit_speech_region.text()
-        text = self.playwidget.textEdit_text.toPlainText()
 
         ssml = (
             f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{self.language_type}">'
@@ -436,13 +446,27 @@ class MainWindowImpl(QMainWindow):
         )
         self.process_player.start()
 
-    def on_stop_conv_clicked(self):
+    def stop_conv(self):
         if self.process_synthesizer:
-            self.process_synthesizer.terminate()
-        if self.process_player:
-            self.process_player.terminate()
+            try:
+                self.process_synthesizer.terminate()
+            except AttributeError:
+                pass
+
         self.is_converting.value = False
+
+    def stop_play(self):
+        if self.process_player:
+            try:
+                self.process_player.terminate()
+            except AttributeError:
+                pass
+
         self.is_paused.value = False
+
+    def on_stop_conv_clicked(self):
+        self.stop_conv()
+        self.stop_play()
 
     def on_pause_resume_clicked(self):
         if self.is_paused.value:
