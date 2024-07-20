@@ -12,7 +12,7 @@ if not os.path.exists(azure_speech_dll):
     sys.exit(1)
 
 a = Analysis(
-    ['MainWindowImpl.py'],
+    ['main.py'],
     pathex=[],
     binaries=[(azure_speech_dll, '.')],
     datas=collect_data_files('azure.cognitiveservices.speech'),
