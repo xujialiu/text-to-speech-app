@@ -26,8 +26,9 @@ import VERSION
 
 
 class MainWindowImpl(QMainWindow):
-    def __init__(self):
+    def __init__(self, debug=False):
         super().__init__()
+        self.debug = debug
         self.convert = 0
         self.play_pause = 0
         self.global_hotkeys_listener = None
@@ -41,13 +42,19 @@ class MainWindowImpl(QMainWindow):
         self.init_ui()
         self.read_settings()
         self.init_tts()
+        
 
     def init_ui(self):
         self._init_app()
         self._init_mainwindow()
         self._init_playwidget()
         self._init_setwidget()
-        self._init_debugwidget()
+        
+        if self.debug:
+            self._init_debugwidget()
+        else:
+            idx = self.mainwindow.tabWidget.indexOf(self.mainwindow.tab_debug)
+            self.mainwindow.tabWidget.setTabVisible(idx, False)
 
         self._init_tray_menu()
         self._init_tray_icon()
@@ -537,6 +544,6 @@ if __name__ == "__main__":
 
     multiprocessing.freeze_support()  # This is necessary for Windows
     app = QApplication(sys.argv)
-    window = MainWindowImpl()
+    window = MainWindowImpl(debug=True)
     window.show()
     sys.exit(app.exec())

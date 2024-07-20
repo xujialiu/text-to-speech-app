@@ -59,7 +59,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Text-To-Speech-app (by Xujia Liu)", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_play), QCoreApplication.translate("MainWindow", u"Play", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_setting), QCoreApplication.translate("MainWindow", u"Setting", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_debug), QCoreApplication.translate("MainWindow", u"Debug", None))
