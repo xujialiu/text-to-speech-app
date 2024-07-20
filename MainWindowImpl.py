@@ -31,7 +31,7 @@ class MainWindowImpl(QMainWindow):
         self.global_hotkeys_listener = None
         self.dict_fn_hotkey = {
             self.on_start_conv_hotkey_triggered: None,
-            self.on_play_pause_hotkey_triggered: None,
+            self.on_pause_resume_hotkey_triggered: None,
             self.on_stop_hotkey_triggered: None,
         }
         self.dict_hotkey_fn = dict()
@@ -110,6 +110,9 @@ class MainWindowImpl(QMainWindow):
         self.setwidget.keySequenceEdit_stop_conv.keySequenceChanged.connect(
             self.set_stop_hotkey
         )
+        self.setwidget.keySequenceEdit_pause_resume.keySequenceChanged.connect(
+            self.set_pasue_resume_hotkey
+        )
 
     # 关于快捷键的逻辑------
     def set_hotkey(self, str_keysequence, on_keysequence_triggered):
@@ -145,8 +148,15 @@ class MainWindowImpl(QMainWindow):
             self.setwidget.keySequenceEdit_stop_conv
         )
         self.set_hotkey(str_keysequence_stop, self.on_stop_hotkey_triggered)
+        
+        
+    def set_pasue_resume_hotkey(self):
+        str_keysequence_pause_resume = self.convert_keysequence_to_string(
+            self.setwidget.keySequenceEdit_pause_resume
+        )
+        self.set_hotkey(str_keysequence_pause_resume, self.on_pause_resume_hotkey_triggered)
 
-    def on_play_pause_hotkey_triggered(self):
+    def on_pause_resume_hotkey_triggered(self):
         self.on_pause_resume_clicked()
 
     def on_stop_hotkey_triggered(self):
