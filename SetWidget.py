@@ -294,9 +294,9 @@ class Ui_Form(object):
         self.label_4.setText(QCoreApplication.translate("Form", u"Voice type", None))
         self.label_5.setText(QCoreApplication.translate("Form", u"Voice speech", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Hotkeys:", None))
-        self.label_6.setText(QCoreApplication.translate("Form", u"sStart converting (clipboard text to speech)", None))
-        self.label_8.setText(QCoreApplication.translate("Form", u"Stop converting", None))
-        self.label_11.setText(QCoreApplication.translate("Form", u"Pause/resume", None))
+        self.label_6.setText(QCoreApplication.translate("Form", u"Start converting (clipboard text to speech)", None))
+        self.label_8.setText(QCoreApplication.translate("Form", u"Stop converting and Pause", None))
+        self.label_11.setText(QCoreApplication.translate("Form", u"Pause / Resume", None))
         self.label_12.setText(QCoreApplication.translate("Form", u"Advanced settings:", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"Text formating (RegExp)", None))
     # retranslateUi

@@ -255,7 +255,7 @@
      <item>
       <widget class="QLabel" name="label_6">
        <property name="text">
-        <string>sStart converting (clipboard text to speech)</string>
+        <string>Start converting (clipboard text to speech)</string>
        </property>
       </widget>
      </item>
@@ -295,7 +295,7 @@
      <item>
       <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>Stop converting</string>
+        <string>Stop converting and Pause</string>
        </property>
       </widget>
      </item>
@@ -335,7 +335,7 @@
      <item>
       <widget class="QLabel" name="label_11">
        <property name="text">
-        <string>Pause/resume</string>
+        <string>Pause / Resume</string>
        </property>
       </widget>
      </item>
