@@ -13,7 +13,7 @@
 
 ## Documentation
 
-[Simple Chinese Documentation](./README.zh.md) | [English Documentation](./README.md)
+[Chinese Documentation](./README.zh.md) | [English Documentation](./README.md)
 
 ## Changelog
 
