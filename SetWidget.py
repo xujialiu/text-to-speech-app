@@ -292,7 +292,7 @@ class Ui_Form(object):
         self.label_2.setText(QCoreApplication.translate("Form", u"Speech region", None))
         self.label_3.setText(QCoreApplication.translate("Form", u"Language type", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"Voice type", None))
-        self.label_5.setText(QCoreApplication.translate("Form", u"Voice speech", None))
+        self.label_5.setText(QCoreApplication.translate("Form", u"Voice speed", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Hotkeys:", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"Start converting (clipboard text to speech)", None))
         self.label_8.setText(QCoreApplication.translate("Form", u"Stop converting and Pause", None))

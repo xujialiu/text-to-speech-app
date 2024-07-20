@@ -186,7 +186,7 @@
      <item>
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Voice speech</string>
+        <string>Voice speed</string>
        </property>
       </widget>
      </item>

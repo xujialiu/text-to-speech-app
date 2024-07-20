@@ -420,6 +420,10 @@ class MainWindowImpl(QMainWindow):
             self.setwidget.keySequenceEdit_pause_resume.setKeySequence(
                 QKeySequence(stop_key_sequence)
             )
+            
+        # read select folder setting
+        self.folder_text = settings.value("select folder", "")
+        self.playwidget.lineEdit_folder.setText(self.folder_text)
 
     def write_settings(self):
         settings = QSettings("xujialiu", "text-to-speech")
@@ -457,6 +461,10 @@ class MainWindowImpl(QMainWindow):
 
         settings.setValue(
             "pause / resume", self.setwidget.keySequenceEdit_pause_resume.keySequence()
+        )
+        
+        settings.setValue(
+            "select folder", self.folder_text
         )
 
     # working!!!
