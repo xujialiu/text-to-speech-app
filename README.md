@@ -9,8 +9,6 @@
   <img src="https://img.shields.io/badge/Package-Azure-blue"/>
 
 
-
-
 ## Documentation
 
 [Chinese Documentation](./README.zh.md) | [English Documentation](./README.md)
@@ -21,7 +19,7 @@
 
 ## Prerequisites
 
-Before you start using this plugin, you need to apply for Microsoft's [Text-to-Speech Service](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/index-text-to-speech) in advance.
+Before you start using this app, you need to apply for Microsoft's [Text-to-Speech Service](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/index-text-to-speech) in advance.
 
 ## Installation and Configuration
 
@@ -36,6 +34,7 @@ You can configure the plugin by following these steps.
 - Fill in the Speech key, Speech Region, and Directory. The acquisition methods for Speech key and Speech Region can be found in [this document](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal&tabs=macos#get-the-keys-for-your-resource).
 
 ### Configuration
+
 - You can quickly register or log in to **Microsoft Azure Cloud Services** via this [website](https://portal.azure.com/#home).
 
 - After logging in, click on Azure AI services.
@@ -58,7 +57,9 @@ You can configure the plugin by following these steps.
   <p align="left"><img src="./.attachments/Pasted_image_20240531142516.png" alt="img" width="800" /></p>
   
 - Select Language type and Voice type. If you find the speech rate too slow, you can speed up by setting Voice speed.
+
 ## How to Use
+
 This plugin can be used in two ways: using hotkeys and directly.
 
 ### Using the Play tab window:

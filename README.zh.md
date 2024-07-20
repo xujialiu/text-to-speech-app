@@ -9,8 +9,6 @@
   <img src="https://img.shields.io/badge/Package-Azure-blue"/>
 
 
-
-
 ## 文档
 
 [中文文档](./README.zh.md) zht.md) | [英文文档](./README.md)
@@ -21,7 +19,7 @@
 
 ## 先决条件
 
-在开始使用此插件之前，您需要事先申请微软的[文本转语音服务](https://learn.microsoft.com/zh-cn/azure/ai-services/speech-service/index-text-to-speech)。
+在开始使用此应用之前，您需要事先申请微软的[文本转语音服务](https://learn.microsoft.com/zh-cn/azure/ai-services/speech-service/index-text-to-speech)。
 
 ## 安装和配置
 
@@ -35,7 +33,7 @@
 
 - 填写 `Speech key`、`Speech Region` 和 `Directory`。其中，`Speech key`、`Speech Region` 的获取方式可以参考[本文档](https://learn.microsoft.com/zh-cn/azure/ai-services/multi-service-resource?pivots=azportal&tabs=macos#get-the-keys-for-your-resource)。
 
-### 配置插件
+### 配置应用
 - 您可以通过这个[网址](https://portal.azure.com/#home)快速注册或登录**微软Azure云服务**。
 
 - 登录后，点击 `Azure AI services`。
@@ -57,7 +55,8 @@
   <p align="left"><img src="./.attachments/Pasted_image_20240531142344.png" alt="img" width="800" /></p>
   <p align="left"><img src="./.attachments/Pasted_image_20240531142516.png" alt="img" width="800" /></p>
   
-- 选择`Language type`和`Voice type`。如果您觉得语速太慢, 可通过设置`Voice speed`提速
+- 选择`Language type`和`Voice type`。如果您觉得语速太慢, 可通过设置`Voice speed`提速。
+
 ## 如何使用
 该插件有2种使用方式：使用热键和直接使用。
 
